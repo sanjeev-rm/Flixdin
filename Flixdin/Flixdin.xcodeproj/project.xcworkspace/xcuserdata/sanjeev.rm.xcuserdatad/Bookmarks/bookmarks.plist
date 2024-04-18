@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>top-level-items</key>
+	<array>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>70</string>
+					<key>EndingLineNumber</key>
+					<string>21</string>
+					<key>StartingColumnNumber</key>
+					<string>4</string>
+					<key>StartingLineNumber</key>
+					<string>21</string>
+					<key>Timestamp</key>
+					<string>731225175.324236</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Flixdin/Service/Dashboard/Posts/PostAPIService.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>static let UPDATE_POST_URL = "https://api.flixdin.com/update-post"</string>
+				<key>leading</key>
+				<string>    static let DELETE_POST_URL = "https://api.flixdin.com/delete-post"
+    static let UPLOAD_POST_IMAGE_URL = "https://api.flixdin.com/upload-image"
+    </string>
+				<key>trailing</key>
+				<string>
+    static let SAVE_POST_URL = "https://api.flixdin.com/save-post"
+    static let LIKE_POST_URL = "https://api.flixdin.com/like-post"
+</string>
+			</dict>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+	</array>
+</dict>
+</plist>
