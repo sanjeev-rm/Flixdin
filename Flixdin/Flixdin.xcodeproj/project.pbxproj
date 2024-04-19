@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D8A17B22BD2DF7C00F8B44F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B12BD2DF7C00F8B44F /* Constants.swift */; };
+		5D8A17B52BD2E00500F8B44F /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B42BD2E00500F8B44F /* NetworkRequest.swift */; };
+		5D8A17B72BD2E12800F8B44F /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B62BD2E12800F8B44F /* HTTPMethods.swift */; };
+		5D8A17B92BD2E13B00F8B44F /* URLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B82BD2E13B00F8B44F /* URLPath.swift */; };
 		5DAD78D02BC84D780086CE46 /* AddFlicksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */; };
 		5DAD78D22BC85F5D0086CE46 /* VideoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */; };
 		5DD8664F2BC7284E0092191E /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD8664E2BC7284E0092191E /* YPImagePicker */; };
@@ -192,6 +196,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D8A17B12BD2DF7C00F8B44F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5D8A17B42BD2E00500F8B44F /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		5D8A17B62BD2E12800F8B44F /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
+		5D8A17B82BD2E13B00F8B44F /* URLPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPath.swift; sourceTree = "<group>"; };
 		5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlicksViewModel.swift; sourceTree = "<group>"; };
 		5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPicker.swift; sourceTree = "<group>"; };
 		6B76A4692A62BBCD0021A40B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -389,6 +397,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D8A17B32BD2DFFF00F8B44F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				5D8A17B42BD2E00500F8B44F /* NetworkRequest.swift */,
+				5D8A17B62BD2E12800F8B44F /* HTTPMethods.swift */,
+				5D8A17B82BD2E13B00F8B44F /* URLPath.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		5DAD78CE2BC84D6E0086CE46 /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,6 +507,7 @@
 		C7748F1D2ABDCF2B00FBCD67 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5D8A17B32BD2DFFF00F8B44F /* Network */,
 				C7748F1E2ABDCF3500FBCD67 /* Authentication */,
 				C7748F1F2ABDCF4600FBCD67 /* Dashboard */,
 				C7C7E6582AF0220A008DD31E /* Image + Extension.swift */,
@@ -712,6 +731,7 @@
 				C71E7CD72AC1E13D004F0E25 /* Storage.swift */,
 				C78B86AB2B9B8F5E005E6FCD /* FlixdinImageView.swift */,
 				C7F98BA62BC2E0B50089A547 /* Search Place */,
+				5D8A17B12BD2DF7C00F8B44F /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1297,6 +1317,7 @@
 				E36C09A52A55931A00205796 /* CityListView.swift in Sources */,
 				C739FC2F2A56B33E00290236 /* TermsAndConditionsView.swift in Sources */,
 				5DAD78D22BC85F5D0086CE46 /* VideoPicker.swift in Sources */,
+				5D8A17B52BD2E00500F8B44F /* NetworkRequest.swift in Sources */,
 				C709FE8E2A59D08D007BA34B /* Domain.swift in Sources */,
 				ED5378592AB75D5E00E636C0 /* AuthenticationManager.swift in Sources */,
 				C7DAD77C2A81BA5B007D891D /* NewConnectionCallCardView.swift in Sources */,
@@ -1318,6 +1339,7 @@
 				C72442652B87B76200A586CC /* PostAPIService.swift in Sources */,
 				C731CA1B2B9CC8BC0036EB8A /* FollowButton.swift in Sources */,
 				C709FE942A59DB6F007BA34B /* OtherSkillsView.swift in Sources */,
+				5D8A17B92BD2E13B00F8B44F /* URLPath.swift in Sources */,
 				C7A3704E2A5496AB0064FF86 /* AuthenticationViewModel.swift in Sources */,
 				C7B7B2A62A5AB09000013291 /* Place.swift in Sources */,
 				C71884562A5594E90037C5DB /* NameView.swift in Sources */,
@@ -1327,6 +1349,7 @@
 				EDF6D3A52A823A3700DF79A9 /* LikeAndShareView.swift in Sources */,
 				ED9B7B742A5848E9002F1A2D /* ProfileDoneView.swift in Sources */,
 				C797BB2E2A55545C006B5466 /* EmailView.swift in Sources */,
+				5D8A17B22BD2DF7C00F8B44F /* Constants.swift in Sources */,
 				EDD44F432A554AC700D4434C /* SearchFieldView.swift in Sources */,
 				C7A3704C2A545D620064FF86 /* LoginViewModel.swift in Sources */,
 				C731CA132B9C669A0036EB8A /* ConnectionCallList.swift in Sources */,
@@ -1394,6 +1417,7 @@
 				EDF6D3A02A8227C600DF79A9 /* ShareContentView.swift in Sources */,
 				C718845E2A55AEC00037C5DB /* BirthdayView.swift in Sources */,
 				C7C0327D2B94BA910008A168 /* UserPostsGridView.swift in Sources */,
+				5D8A17B72BD2E12800F8B44F /* HTTPMethods.swift in Sources */,
 				EDF941F92A5DE18100A1CE0D /* ViewerClickView.swift in Sources */,
 				C7D43CEE2A5A96F1006C95F3 /* ConnectionCallView.swift in Sources */,
 				C7C41DF82A59BCF30082B94E /* ForgotPasswordResetPasswordView.swift in Sources */,
