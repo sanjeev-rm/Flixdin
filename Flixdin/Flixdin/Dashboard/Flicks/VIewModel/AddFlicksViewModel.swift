@@ -11,6 +11,7 @@ import Foundation
 class AddFlicksViewModel: ObservableObject {
     @Published var isUploading: Bool = false
 
+    //MARK: Upload video
     func uploadSelectedVideo(pickedVideoURL: URL?) {
         guard let videoURL = pickedVideoURL else {
             print("No video URL found")
@@ -89,6 +90,7 @@ class AddFlicksViewModel: ObservableObject {
         task.resume()
     }
 
+    //MARK: Video Conversion
     private func convertFormField(named name: String, value: String, using boundary: String) -> Data {
         let data = NSMutableData()
         data.appendString("--\(boundary)\r\n")
@@ -108,8 +110,7 @@ class AddFlicksViewModel: ObservableObject {
     }
 }
 
-// MARK: - Data Extension for Multipart/Form-Data
-
+//MARK: - Data Extension for Multipart/Form-Data
 extension NSMutableData {
     func appendString(_ string: String) {
         if let data = string.data(using: .utf8) {
