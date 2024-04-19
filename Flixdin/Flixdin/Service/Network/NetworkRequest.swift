@@ -17,7 +17,7 @@ struct NetworkRequest {
         request.httpMethod = method.rawValue
         request.httpBody = body
 
-        if method == .post {
+        if (method == .post || method == .put) {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         }
 
