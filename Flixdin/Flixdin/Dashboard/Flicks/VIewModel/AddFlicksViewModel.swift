@@ -10,6 +10,10 @@ import Foundation
 
 class AddFlicksViewModel: ObservableObject {
     @Published var isUploading: Bool = false
+    
+    init(){
+        print("user id \(Auth.auth().currentUser?.uid ?? "no user id")")
+    }
 
     //MARK: Upload video
     func uploadSelectedVideo(pickedVideoURL: URL?) {
