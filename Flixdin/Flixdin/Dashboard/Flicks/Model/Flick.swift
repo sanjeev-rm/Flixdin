@@ -60,6 +60,22 @@ struct LikeOrDislikeFlixRequest: Encodable {
     let userid: Int
 }
 
+//MARK: GetAllFlixResponse
+struct GetAllFlixResponse: Decodable{
+    let result: String
+}
+
+//MARK: GetSpecificFlix
+struct GetSpecificFlixRequest: Encodable{
+    let flixid: String
+}
+
+//MARK: GetSpecificFlixPosterByAUserRequest
+struct GetSpecificFlixPosterByAUserRequest: Encodable{
+    let userid: String
+}
+
+
 // MARK: APIResponse
 
 struct APIResponse: Decodable {
