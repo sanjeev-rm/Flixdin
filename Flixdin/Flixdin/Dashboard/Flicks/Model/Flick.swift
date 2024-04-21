@@ -23,15 +23,20 @@ struct FlickRequest: Encodable {
 // MARK: NewFlixRequest
 
 struct NewFlixRequest: Encodable {
-    let ownerid: Int
+    let ownerid: String
     let domain: String
     let caption: String
-    let applicants: Int
+    let applicants: [String]
     let location: String
     let likes: [String]
     let flixurl: String
     let flixdate: String
     let comments: [String]
+}
+
+//MARK: NewFlixResponse
+struct NewFlixResponse: Decodable{
+    let new_flix: String
 }
 
 // MARK: DeleteFlixRequest

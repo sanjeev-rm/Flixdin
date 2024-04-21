@@ -10,20 +10,51 @@ import Foundation
 
 class AddFlicksViewModel: ObservableObject {
     @Published var isUploading: Bool = false
-    
-    init(){
-        print("user id \(Auth.auth().currentUser?.uid ?? "no user id")")
-    }
+    @Published var caption: String = ""
+    @Published var location: String = ""
+    @Published var domain: String = ""
 
-    //MARK: Upload video
-    func uploadSelectedVideo(pickedVideoURL: URL?) {
-        guard let videoURL = pickedVideoURL else {
-            print("No video URL found")
+    @Published var newFlixResponse: String = ""
+    @Published var status: Int = 0
+    /// This makes a POST request to the backend and
+    /// sends the caption, domain and locatin of the flix
+    /// and gets the flix ID in return
+
+    // MARK: Add-Flix
+
+    func addFlix() async {
+        guard let loggedInUserId = Auth.auth().currentUser?.uid else {
+            print("Logged In UserId invalid - Updating User")
             return
         }
 
-        guard let loggedInUserId = Auth.auth().currentUser?.uid else {
-            print("Logged In UserId invalid - Updating User")
+        let urlPath = URLPath.newFlix
+
+        let requestBody = NewFlixRequest(ownerid: loggedInUserId, domain: domain, caption: caption, applicants: [""], location: location, likes: [""], flixurl: "", flixdate: "\(Date())", comments: [""])
+
+        do {
+            let response: NewFlixResponse = try await NetworkRequest.request(urlPath: urlPath, method: .post, body: encodeRequestBody(requestBody))
+
+            DispatchQueue.main.async { [weak self] in
+
+                print("add flix success \(response)")
+
+                self?.newFlixResponse = response.new_flix
+            }
+        } catch {
+            print("erorr adding flix \(error.localizedDescription)")
+        }
+    }
+
+    private func encodeRequestBody(_ requestBody: NewFlixRequest) -> Data? {
+        try? JSONEncoder().encode(requestBody)
+    }
+
+    // MARK: Upload video
+
+    func uploadSelectedVideo(pickedVideoURL: URL?) {
+        guard let videoURL = pickedVideoURL else {
+            print("No video URL found")
             return
         }
 
@@ -43,7 +74,7 @@ class AddFlicksViewModel: ObservableObject {
 
         let httpBody = NSMutableData()
 
-        httpBody.append(convertFormField(named: "id", value: loggedInUserId, using: boundary))
+        httpBody.append(convertFormField(named: "id", value: self.newFlixResponse, using: boundary))
 
         if let videoData = try? Data(contentsOf: videoURL) {
             httpBody.append(convertFileData(fieldName: "file",
@@ -63,6 +94,7 @@ class AddFlicksViewModel: ObservableObject {
                 print("Error uploading video: \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     self.isUploading = false
+                    
                 }
                 return
             }
@@ -71,6 +103,7 @@ class AddFlicksViewModel: ObservableObject {
                 print("Server error")
                 DispatchQueue.main.async {
                     self.isUploading = false
+                    
                 }
                 return
             }
@@ -88,13 +121,15 @@ class AddFlicksViewModel: ObservableObject {
                 print("video upload response \(httpResponse)")
                 DispatchQueue.main.async {
                     self.isUploading = false
+                    self.status = httpResponse.statusCode
                 }
             }
         }
         task.resume()
     }
 
-    //MARK: Video Conversion
+    // MARK: Video Conversion
+
     private func convertFormField(named name: String, value: String, using boundary: String) -> Data {
         let data = NSMutableData()
         data.appendString("--\(boundary)\r\n")
@@ -114,7 +149,8 @@ class AddFlicksViewModel: ObservableObject {
     }
 }
 
-//MARK: - Data Extension for Multipart/Form-Data
+// MARK: - Data Extension for Multipart/Form-Data
+
 extension NSMutableData {
     func appendString(_ string: String) {
         if let data = string.data(using: .utf8) {
