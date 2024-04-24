@@ -35,6 +35,7 @@
 		5DD866822BC72A040092191E /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD866812BC72A040092191E /* FirebaseRemoteConfigSwift */; };
 		5DD866842BC72A040092191E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD866832BC72A040092191E /* FirebaseStorage */; };
 		5DD866862BC72A040092191E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD866852BC72A040092191E /* FirebaseStorageCombine-Community */; };
+		5DFFFC222BD918C000A64AF0 /* FlixViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */; };
 		6B76A46A2A62BBCD0021A40B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B76A4692A62BBCD0021A40B /* Notification.swift */; };
 		6B76A46C2A62BC7E0021A40B /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B76A46B2A62BC7E0021A40B /* NotificationsView.swift */; };
 		C7046BF62A9BE22B0023BC98 /* MediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7046BF52A9BE22B0023BC98 /* MediaFile.swift */; };
@@ -202,6 +203,7 @@
 		5D8A17B82BD2E13B00F8B44F /* URLPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPath.swift; sourceTree = "<group>"; };
 		5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlicksViewModel.swift; sourceTree = "<group>"; };
 		5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPicker.swift; sourceTree = "<group>"; };
+		5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixViewModel.swift; sourceTree = "<group>"; };
 		6B76A4692A62BBCD0021A40B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		6B76A46B2A62BC7E0021A40B /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		C7046BF52A9BE22B0023BC98 /* MediaFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFile.swift; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */,
+				5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -1324,6 +1327,7 @@
 				C71884582A5596D10037C5DB /* CreatePasswordView.swift in Sources */,
 				EDF6D3A72A83D3CA00DF79A9 /* Post.swift in Sources */,
 				C71AC9632B66D773005ED500 /* ConnectionCallApplyButton.swift in Sources */,
+				5DFFFC222BD918C000A64AF0 /* FlixViewModel.swift in Sources */,
 				C7748F242ABDD02500FBCD67 /* UserNormalInfoUpdateService.swift in Sources */,
 				C797BB362A555B7B006B5466 /* MobileView.swift in Sources */,
 				C7748F182ABD529100FBCD67 /* AuthenticationAPIService.swift in Sources */,
