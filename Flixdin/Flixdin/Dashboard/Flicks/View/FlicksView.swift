@@ -20,6 +20,8 @@ struct FlicksView: View {
     
     @State var showAddFlickView: Bool = false
     
+    @StateObject var flixViewModel = FlixViewModel()
+    
     var body: some View {
         
         GeometryReader { proxy in
@@ -66,6 +68,11 @@ struct FlicksView: View {
         .background(Color.black.ignoresSafeArea())
         .fullScreenCover(isPresented: $showAddFlickView, onDismiss: {}, content: {
             AddFlicksView(showAddFlicksView: $showAddFlickView)
+        })
+        .onAppear(perform: {
+            Task{
+                await flixViewModel.getAllFlix()
+            }
         })
     }
 }

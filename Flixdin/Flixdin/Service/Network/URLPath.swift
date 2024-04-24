@@ -13,4 +13,7 @@ enum URLPath: String{
     case updateFlix = "update-flix"
     case likeFlix = "like-flix"
     case dislikeFlix = "dislike-flix"
+    case getAllFlix = "/get-all-flix"
+    case getFlixPostedByASpecificUser = "/get-user-flix"
+    case getSpeicificFlix = "/get-flix"
 }

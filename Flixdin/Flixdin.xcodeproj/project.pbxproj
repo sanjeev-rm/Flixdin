@@ -35,6 +35,10 @@
 		5DD866822BC72A040092191E /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD866812BC72A040092191E /* FirebaseRemoteConfigSwift */; };
 		5DD866842BC72A040092191E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD866832BC72A040092191E /* FirebaseStorage */; };
 		5DD866862BC72A040092191E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD866852BC72A040092191E /* FirebaseStorageCombine-Community */; };
+		5DF05D4A2BD9965B00B666B8 /* FlixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF05D492BD9965B00B666B8 /* FlixView.swift */; };
+		5DF05D532BD99F7200B666B8 /* FlixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF05D522BD99F7200B666B8 /* FlixCell.swift */; };
+		5DF05D552BD9A6D400B666B8 /* CustomFlixPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */; };
+		5DFFFC222BD918C000A64AF0 /* FlixViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */; };
 		6B76A46A2A62BBCD0021A40B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B76A4692A62BBCD0021A40B /* Notification.swift */; };
 		6B76A46C2A62BC7E0021A40B /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B76A46B2A62BC7E0021A40B /* NotificationsView.swift */; };
 		C7046BF62A9BE22B0023BC98 /* MediaFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7046BF52A9BE22B0023BC98 /* MediaFile.swift */; };
@@ -202,6 +206,10 @@
 		5D8A17B82BD2E13B00F8B44F /* URLPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPath.swift; sourceTree = "<group>"; };
 		5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlicksViewModel.swift; sourceTree = "<group>"; };
 		5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPicker.swift; sourceTree = "<group>"; };
+		5DF05D492BD9965B00B666B8 /* FlixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixView.swift; sourceTree = "<group>"; };
+		5DF05D522BD99F7200B666B8 /* FlixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixCell.swift; sourceTree = "<group>"; };
+		5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlixPlayer.swift; sourceTree = "<group>"; };
+		5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixViewModel.swift; sourceTree = "<group>"; };
 		6B76A4692A62BBCD0021A40B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		6B76A46B2A62BC7E0021A40B /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
 		C7046BF52A9BE22B0023BC98 /* MediaFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaFile.swift; sourceTree = "<group>"; };
@@ -411,8 +419,19 @@
 			isa = PBXGroup;
 			children = (
 				5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */,
+				5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */,
 			);
 			path = VIewModel;
+			sourceTree = "<group>";
+		};
+		5DF05D482BD9964C00B666B8 /* FlixFeed */ = {
+			isa = PBXGroup;
+			children = (
+				5DF05D492BD9965B00B666B8 /* FlixView.swift */,
+				5DF05D522BD99F7200B666B8 /* FlixCell.swift */,
+				5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */,
+			);
+			path = FlixFeed;
 			sourceTree = "<group>";
 		};
 		6B76A4682A62BB910021A40B /* Notifications */ = {
@@ -776,6 +795,7 @@
 		C7B6D5522A9996470058B48B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5DF05D482BD9964C00B666B8 /* FlixFeed */,
 				C7B6D5502A99955D0058B48B /* FlicksView.swift */,
 				C7046C062A9C53220023BC98 /* FlickPlayer.swift */,
 				C7046C042A9C38080023BC98 /* CustomVideoPlayer.swift */,
@@ -1305,8 +1325,11 @@
 				EDD90D372A7CC9F1001B1166 /* CompleteLocationView.swift in Sources */,
 				5DAD78D02BC84D780086CE46 /* AddFlicksViewModel.swift in Sources */,
 				C7046C052A9C38080023BC98 /* CustomVideoPlayer.swift in Sources */,
+				5DF05D532BD99F7200B666B8 /* FlixCell.swift in Sources */,
 				C7DAD7792A81A714007D891D /* AddConnectionCallView.swift in Sources */,
+				5DF05D4A2BD9965B00B666B8 /* FlixView.swift in Sources */,
 				ED3E260E2A79086600C5DC49 /* CameraView.swift in Sources */,
+				5DF05D552BD9A6D400B666B8 /* CustomFlixPlayer.swift in Sources */,
 				C7E838042A56F0B900C2322C /* AddProfilePictureView.swift in Sources */,
 				C7C7C2212A589D7300DE2185 /* AddDomainView.swift in Sources */,
 				C7C032772B949F520008A168 /* PostedView.swift in Sources */,
@@ -1324,6 +1347,7 @@
 				C71884582A5596D10037C5DB /* CreatePasswordView.swift in Sources */,
 				EDF6D3A72A83D3CA00DF79A9 /* Post.swift in Sources */,
 				C71AC9632B66D773005ED500 /* ConnectionCallApplyButton.swift in Sources */,
+				5DFFFC222BD918C000A64AF0 /* FlixViewModel.swift in Sources */,
 				C7748F242ABDD02500FBCD67 /* UserNormalInfoUpdateService.swift in Sources */,
 				C797BB362A555B7B006B5466 /* MobileView.swift in Sources */,
 				C7748F182ABD529100FBCD67 /* AuthenticationAPIService.swift in Sources */,

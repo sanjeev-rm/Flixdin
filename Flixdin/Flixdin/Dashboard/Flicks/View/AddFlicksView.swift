@@ -19,21 +19,56 @@ struct AddFlicksView: View {
     var body: some View {
         NavigationStack {
             VStack {
+            
                 if let selectedVideoURL {
                     VideoPlayer(player: .init(url: selectedVideoURL))
                         .frame(height: 200)
                 }
 
-                Button("Select Video") {
-                    showingPicker = true
+                HStack {
+                    Button("Select Video") {
+                        
+                        if (!addFlicksViewModel.caption.isEmpty && !addFlicksViewModel.location.isEmpty && !addFlicksViewModel.domain.isEmpty){
+                            
+                            Task{
+                                await addFlicksViewModel.addFlix()
+                            }
+                            showingPicker = true
+                        }
+                       
+                    }
+                    .buttonStyle(.borderedProminent)
+
+                    Button("Post Video") {
+                        var _ = print("flixid \(addFlicksViewModel.newFlixResponse)")
+                        addFlicksViewModel.uploadSelectedVideo(pickedVideoURL: selectedVideoURL)
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
 
-                Button("Post Video") {
-                    addFlicksViewModel.uploadSelectedVideo(pickedVideoURL: selectedVideoURL)
-                }
+                TextField("Caption", text: $addFlicksViewModel.caption)
+                    .padding()
+
+                TextField("Location", text: $addFlicksViewModel.location)
+                    .padding()
+
+                TextField("Domain", text: $addFlicksViewModel.domain)
+                    .padding()
                 
+                Text("Flix Upload Status Code: \(addFlicksViewModel.status)")
+                
+                //respond to the status code based on the design
+                //MARK: flow of this view:
+                /*
+                    1. user should add caption, location and domain first
+                    2. Select video button performs a network call to send these data to the backend and gets the flixid as the response
+                    3. Select the video that you want to upload
+                    4. Post video button makes another POST request network call and uploads the video to the backend
+                    5. A full screen progress view appears until the a response is given by the post video request
+                 */
+
                 Spacer()
-                
+
             }.overlay(content: {
                 if addFlicksViewModel.isUploading {
                     Rectangle()
@@ -49,7 +84,7 @@ struct AddFlicksView: View {
             })
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.flixColorBackgroundPrimary)
-            .navigationTitle("Add Flick")
+            .navigationTitle("Add Flix")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -90,5 +125,3 @@ struct VideoPickerTransferable: Transferable {
         }
     }
 }
-
-
