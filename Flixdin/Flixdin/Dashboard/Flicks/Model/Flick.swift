@@ -34,8 +34,9 @@ struct NewFlixRequest: Encodable {
     let comments: [String]
 }
 
-//MARK: NewFlixResponse
-struct NewFlixResponse: Decodable{
+// MARK: NewFlixResponse
+
+struct NewFlixResponse: Decodable {
     let new_flix: String
 }
 
@@ -60,21 +61,40 @@ struct LikeOrDislikeFlixRequest: Encodable {
     let userid: Int
 }
 
-//MARK: GetAllFlixResponse
-struct GetAllFlixResponse: Decodable{
+// MARK: GetAllFlixResponse
+
+struct GetAllFlixResponse: Decodable {
     let result: String
 }
 
-//MARK: GetSpecificFlix
-struct GetSpecificFlixRequest: Encodable{
+// MARK: GetSpecificFlix
+
+struct GetSpecificFlixRequest: Encodable {
     let flixid: String
 }
 
-//MARK: GetSpecificFlixPosterByAUserRequest
-struct GetSpecificFlixPosterByAUserRequest: Encodable{
+// MARK: GetSpecificFlixPosterByAUserRequest
+
+struct GetSpecificFlixPosterByAUserRequest: Encodable {
     let userid: String
 }
 
+// MARK: Flix Response
+
+struct FlixResponse: Decodable{
+    let flixid: String
+    let ownerid: String
+    let domain: String
+    let caption: String
+    let applicants: [String]
+    let location: String
+    let likes: [String]
+    let flixurl: String
+    let flixdate: String
+    let comments: [String]
+    let banned: Bool
+    let embedding: String?
+}
 
 // MARK: APIResponse
 
