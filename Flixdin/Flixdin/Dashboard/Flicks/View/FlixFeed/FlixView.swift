@@ -18,9 +18,7 @@ struct FlixView: View {
             ZStack {
                 TabView(selection: $currentFlix) {
                     ForEach(flixViewModel.allFlix) { flix in
-
                         FlixCell(flix: flix)
-
                             .frame(width: proxy.size.width)
                             .rotationEffect(Angle(degrees: -90))
                             .tag(flix)
@@ -37,11 +35,6 @@ struct FlixView: View {
         .fullScreenCover(isPresented: $showAddFlickView, onDismiss: {}, content: {
             AddFlicksView(showAddFlicksView: $showAddFlickView)
         })
-//        .onAppear(perform: {
-//            Task {
-//                await flixViewModel.getAllFlix()
-//            }
-//        })
     }
 }
 

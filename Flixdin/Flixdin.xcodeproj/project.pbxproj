@@ -37,6 +37,7 @@
 		5DD866862BC72A040092191E /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD866852BC72A040092191E /* FirebaseStorageCombine-Community */; };
 		5DF05D4A2BD9965B00B666B8 /* FlixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF05D492BD9965B00B666B8 /* FlixView.swift */; };
 		5DF05D532BD99F7200B666B8 /* FlixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF05D522BD99F7200B666B8 /* FlixCell.swift */; };
+		5DF05D552BD9A6D400B666B8 /* CustomFlixPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */; };
 		5DFFFC222BD918C000A64AF0 /* FlixViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */; };
 		6B76A46A2A62BBCD0021A40B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B76A4692A62BBCD0021A40B /* Notification.swift */; };
 		6B76A46C2A62BC7E0021A40B /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B76A46B2A62BC7E0021A40B /* NotificationsView.swift */; };
@@ -207,6 +208,7 @@
 		5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPicker.swift; sourceTree = "<group>"; };
 		5DF05D492BD9965B00B666B8 /* FlixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixView.swift; sourceTree = "<group>"; };
 		5DF05D522BD99F7200B666B8 /* FlixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixCell.swift; sourceTree = "<group>"; };
+		5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlixPlayer.swift; sourceTree = "<group>"; };
 		5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixViewModel.swift; sourceTree = "<group>"; };
 		6B76A4692A62BBCD0021A40B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		6B76A46B2A62BC7E0021A40B /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			children = (
 				5DF05D492BD9965B00B666B8 /* FlixView.swift */,
 				5DF05D522BD99F7200B666B8 /* FlixCell.swift */,
+				5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */,
 			);
 			path = FlixFeed;
 			sourceTree = "<group>";
@@ -1326,6 +1329,7 @@
 				C7DAD7792A81A714007D891D /* AddConnectionCallView.swift in Sources */,
 				5DF05D4A2BD9965B00B666B8 /* FlixView.swift in Sources */,
 				ED3E260E2A79086600C5DC49 /* CameraView.swift in Sources */,
+				5DF05D552BD9A6D400B666B8 /* CustomFlixPlayer.swift in Sources */,
 				C7E838042A56F0B900C2322C /* AddProfilePictureView.swift in Sources */,
 				C7C7C2212A589D7300DE2185 /* AddDomainView.swift in Sources */,
 				C7C032772B949F520008A168 /* PostedView.swift in Sources */,

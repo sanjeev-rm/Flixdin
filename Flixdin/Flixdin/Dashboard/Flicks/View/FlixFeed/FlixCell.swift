@@ -10,10 +10,31 @@ import SwiftUI
 
 struct FlixCell: View {
     let flix: FlixResponse
-
+    var player: AVPlayer?
+    
+    init(flix: FlixResponse){
+        self.flix = flix
+        
+        if let url = URL(string: flix.flixurl){
+            self.player = AVPlayer(url: url)
+        }else{
+            print("error getting url")
+            self.player = nil
+        }
+    }
+    
     var body: some View {
         ZStack {
-            VideoPlayer(player: AVPlayer(url: URL(string: flix.flixurl)!))
+            if let url = URL(string: flix.flixurl) {
+                CustomFlixPlayer(player: player ?? AVPlayer(url: URL(string: "")!))
+
+            } else {
+                Rectangle()
+                    .foregroundColor(.blue)
+                    .overlay {
+                        Text("Error getting video")
+                    }
+            }
 
             VStack {
                 Spacer()
@@ -28,6 +49,9 @@ struct FlixCell: View {
             }
             .padding()
         }
+        .onAppear(perform: {
+            player?.play()
+        })
     }
 }
 
@@ -59,7 +83,7 @@ extension FlixCell {
                         .resizable()
                         .frame(width: 28, height: 28)
                         .foregroundColor(.white)
-                    Text("69")
+                    Text("\(flix.likes.count)")
                         .font(.caption)
                         .foregroundColor(.white)
                         .bold()
@@ -73,7 +97,7 @@ extension FlixCell {
                         .resizable()
                         .frame(width: 28, height: 28)
                         .foregroundColor(.white)
-                    Text("10")
+                    Text("\(flix.comments.count)")
                         .font(.caption)
                         .foregroundColor(.white)
                         .bold()
