@@ -9,7 +9,13 @@ import Foundation
 
 
 class FlixViewModel: ObservableObject{
-    @Published var getAllFlix: [FlixResponse] = [FlixResponse(flixid: "", ownerid: "", domain: "", caption: "", applicants: [""], location: "", likes: [""], flixurl: "", flixdate: "", comments: [""], banned: false, embedding: "")]
+    @Published var allFlix: [FlixResponse] = [FlixResponse(flixid: "", ownerid: "", domain: "", caption: "", applicants: [""], location: "", likes: [""], flixurl: "", flixdate: "", comments: [""], banned: false, embedding: "")]
+    
+    init(){
+        Task{
+            await getAllFlix()
+        }
+    }
     
     func getAllFlix() async{
         let urlPath = URLPath.getAllFlix
@@ -23,9 +29,9 @@ class FlixViewModel: ObservableObject{
             DispatchQueue.main.async { [weak self] in
                 print("success all flix response \(response)")
                 
-                self?.getAllFlix = response
+                self?.allFlix = response
                 print("----------------------------------")
-                print("success all flix \(String(describing: self?.getAllFlix))")
+                print("success all flix \(String(describing: self?.allFlix))")
             }
         }catch{
             print("error getting all flix \(error.localizedDescription)")

@@ -81,7 +81,7 @@ struct GetSpecificFlixPosterByAUserRequest: Encodable {
 
 // MARK: Flix Response
 
-struct FlixResponse: Decodable{
+struct FlixResponse: Identifiable,Decodable, Hashable{
     let flixid: String
     let ownerid: String
     let domain: String
@@ -94,6 +94,8 @@ struct FlixResponse: Decodable{
     let comments: [String]
     let banned: Bool
     let embedding: String?
+    
+    var id: String { flixid }
 }
 
 // MARK: APIResponse

@@ -11,15 +11,16 @@ struct FlixView: View {
     @State var currentFlix = ""
     @State var showAddFlickView: Bool = false
     @StateObject var flixViewModel = FlixViewModel()
+
     var body: some View {
         GeometryReader { proxy in
 
             ZStack {
                 TabView(selection: $currentFlix) {
-                    ForEach(0 ..< 10) { flix in
+                    ForEach(flixViewModel.allFlix) { flix in
 
                         FlixCell(flix: flix)
-                        
+
                             .frame(width: proxy.size.width)
                             .rotationEffect(Angle(degrees: -90))
                             .tag(flix)
@@ -36,11 +37,11 @@ struct FlixView: View {
         .fullScreenCover(isPresented: $showAddFlickView, onDismiss: {}, content: {
             AddFlicksView(showAddFlicksView: $showAddFlickView)
         })
-        .onAppear(perform: {
-            Task {
-                await flixViewModel.getAllFlix()
-            }
-        })
+//        .onAppear(perform: {
+//            Task {
+//                await flixViewModel.getAllFlix()
+//            }
+//        })
     }
 }
 
