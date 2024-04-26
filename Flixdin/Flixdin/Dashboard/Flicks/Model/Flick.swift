@@ -57,8 +57,8 @@ struct UpdateFlixRequest: Encodable {
 // MARK: LikeOrDislikeFlixRequest
 
 struct LikeOrDislikeFlixRequest: Encodable {
-    let flixid: Int
-    let userid: Int
+    let flixid: String
+    let userid: String
 }
 
 // MARK: GetAllFlixRequest

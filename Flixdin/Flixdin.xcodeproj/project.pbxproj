@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D46754A2BDC08A400F83A1F /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4675492BDC08A400F83A1F /* Comments.swift */; };
 		5D8A17B22BD2DF7C00F8B44F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B12BD2DF7C00F8B44F /* Constants.swift */; };
 		5D8A17B52BD2E00500F8B44F /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B42BD2E00500F8B44F /* NetworkRequest.swift */; };
 		5D8A17B72BD2E12800F8B44F /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B62BD2E12800F8B44F /* HTTPMethods.swift */; };
@@ -200,6 +201,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D4675492BDC08A400F83A1F /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		5D8A17B12BD2DF7C00F8B44F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5D8A17B42BD2E00500F8B44F /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		5D8A17B62BD2E12800F8B44F /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 				5DF05D492BD9965B00B666B8 /* FlixView.swift */,
 				5DF05D522BD99F7200B666B8 /* FlixCell.swift */,
 				5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */,
+				5D4675492BDC08A400F83A1F /* Comments.swift */,
 			);
 			path = FlixFeed;
 			sourceTree = "<group>";
@@ -1412,6 +1415,7 @@
 				C709FE962A59DE87007BA34B /* WelcomeView.swift in Sources */,
 				6B76A46A2A62BBCD0021A40B /* Notification.swift in Sources */,
 				ED79AC052A5AA243000861F1 /* AllMessagesView.swift in Sources */,
+				5D46754A2BDC08A400F83A1F /* Comments.swift in Sources */,
 				C7C41DF42A59BC4A0082B94E /* ForgotPasswordEmailView.swift in Sources */,
 				EDD44F3E2A5545BD00D4434C /* RightVerticalPicture.swift in Sources */,
 				ED79AC012A5A9917000861F1 /* ReceiversMessageView.swift in Sources */,

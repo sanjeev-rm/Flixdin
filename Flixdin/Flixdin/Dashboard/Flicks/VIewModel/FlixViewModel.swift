@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import FirebaseAuth
 
 class FlixViewModel: ObservableObject{
     @Published var allFlix: [FlixResponse] = [FlixResponse(flixid: "", ownerid: "", domain: "", caption: "", applicants: [""], location: "", likes: [""], flixurl: "", flixdate: "", comments: [""], banned: false, embedding: "")]
@@ -24,7 +24,7 @@ class FlixViewModel: ObservableObject{
         
         do{
             let response: [FlixResponse] = try await
-            NetworkRequest.request(urlPath: urlPath, method: .post, body: getAllFlixEncodeRequestBody(requestBody))
+            NetworkRequest.request(urlPath: urlPath, method: .post, body: NetworkRequest.encodeRequestBody(requestBody))
             
             DispatchQueue.main.async { [weak self] in
                 print("success all flix response \(response)")
@@ -40,9 +40,39 @@ class FlixViewModel: ObservableObject{
 
     }
     
-    private func getAllFlixEncodeRequestBody(_ requestBody: GetAllFlixRequest) -> Data? {
-        try? JSONEncoder().encode(requestBody)
+    func likeFlix(flixid: String) async{
+        let urlPath = URLPath.likeFlix
+        
+        guard let userid = Auth.auth().currentUser?.uid else {
+            print("Logged In UserId invalid - Updating User")
+            return
+        }
+
+        let requestBody = LikeOrDislikeFlixRequest(flixid: flixid, userid: userid)
+        
+//        do{
+//            //let response:
+//        }catch{
+//            
+//        }
+        
     }
+    
+    func dislikeFlix(flixid: String) async{
+        let urlPath = URLPath.dislikeFlix
+        
+        guard let userid = Auth.auth().currentUser?.uid else {
+            print("Logged In UserId invalid - Updating User")
+            return
+        }
+        
+        let requestBody = LikeOrDislikeFlixRequest(flixid: flixid, userid: userid)
+        
+    }
+    
+
+    
+
     
     
 }

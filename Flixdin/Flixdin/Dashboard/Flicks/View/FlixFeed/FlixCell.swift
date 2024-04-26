@@ -11,18 +11,20 @@ import SwiftUI
 struct FlixCell: View {
     let flix: FlixResponse
     var player: AVPlayer?
-    
-    init(flix: FlixResponse){
+
+    @State var showComments: Bool = false
+
+    init(flix: FlixResponse) {
         self.flix = flix
-        
-        if let url = URL(string: flix.flixurl){
-            self.player = AVPlayer(url: url)
-        }else{
+
+        if let url = URL(string: flix.flixurl) {
+            player = AVPlayer(url: url)
+        } else {
             print("error getting url")
-            self.player = nil
+            player = nil
         }
     }
-    
+
     var body: some View {
         ZStack {
             if let url = URL(string: flix.flixurl) {
@@ -51,6 +53,9 @@ struct FlixCell: View {
         }
         .onAppear(perform: {
             player?.play()
+        })
+        .sheet(isPresented: $showComments, content: {
+            CommentsView()
         })
     }
 }
@@ -91,6 +96,8 @@ extension FlixCell {
             })
 
             Button(action: {
+                showComments.toggle()
+
             }, label: {
                 VStack {
                     Image(systemName: "ellipsis.bubble.fill")
