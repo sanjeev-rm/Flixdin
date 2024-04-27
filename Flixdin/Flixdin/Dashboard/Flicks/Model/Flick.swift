@@ -98,6 +98,15 @@ struct FlixResponse: Identifiable,Decodable, Hashable{
     var id: String { flixid }
 }
 
+//MARK: Like Flix Response
+struct LikeFlixResponse: Decodable{
+    var addlike_flix: Bool
+}
+
+struct DislikeFlixResponse: Decodable{
+    var deletelike_flix: Bool
+}
+
 // MARK: APIResponse
 
 struct APIResponse: Decodable {

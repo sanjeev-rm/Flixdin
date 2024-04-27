@@ -13,6 +13,10 @@ struct FlixCell: View {
     var player: AVPlayer?
 
     @State var showComments: Bool = false
+    
+    @StateObject var flixCellViewModel = FlixCellViewModel()
+    
+    @State var likeStatus: Bool = false
 
     init(flix: FlixResponse) {
         self.flix = flix
@@ -53,6 +57,7 @@ struct FlixCell: View {
         }
         .onAppear(perform: {
             player?.play()
+            
         })
         .sheet(isPresented: $showComments, content: {
             CommentsView()
@@ -82,12 +87,26 @@ extension FlixCell {
     private func actions() -> some View {
         VStack(spacing: 28) {
             Button(action: {
+                
+                if likeStatus{
+                    Task{
+                        await flixCellViewModel.dislikeFlix(flixid: flix.flixid)
+                        likeStatus.toggle()
+                    }
+                } else{
+                    Task{
+                        await flixCellViewModel.likeFlix(flixid: flix.flixid)
+                        likeStatus.toggle()
+                    }
+                }
+                
+               
             }, label: {
                 VStack {
                     Image(systemName: "heart.fill")
                         .resizable()
                         .frame(width: 28, height: 28)
-                        .foregroundColor(.white)
+                        .foregroundColor(likeStatus ? Color.red : .white)
                     Text("\(flix.likes.count)")
                         .font(.caption)
                         .foregroundColor(.white)
