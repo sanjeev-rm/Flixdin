@@ -40,6 +40,9 @@ struct CommentsView: View {
 
             commentBox()
         }
+        .onAppear(perform: {
+            print("\(Date())")
+        })
     }
 }
 
