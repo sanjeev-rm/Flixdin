@@ -13,6 +13,7 @@
 		5D8A17B72BD2E12800F8B44F /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B62BD2E12800F8B44F /* HTTPMethods.swift */; };
 		5D8A17B92BD2E13B00F8B44F /* URLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B82BD2E13B00F8B44F /* URLPath.swift */; };
 		5DA00E832BFD9A9C00A29BE6 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 5DA00E822BFD9A9C00A29BE6 /* SocketIO */; };
+		5DA00E862BFD9BA000A29BE6 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA00E852BFD9BA000A29BE6 /* SocketIOManager.swift */; };
 		5DAD78D02BC84D780086CE46 /* AddFlicksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */; };
 		5DAD78D22BC85F5D0086CE46 /* VideoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */; };
 		5DD8664F2BC7284E0092191E /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD8664E2BC7284E0092191E /* YPImagePicker */; };
@@ -208,6 +209,7 @@
 		5D8A17B42BD2E00500F8B44F /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		5D8A17B62BD2E12800F8B44F /* HTTPMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethods.swift; sourceTree = "<group>"; };
 		5D8A17B82BD2E13B00F8B44F /* URLPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPath.swift; sourceTree = "<group>"; };
+		5DA00E852BFD9BA000A29BE6 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlicksViewModel.swift; sourceTree = "<group>"; };
 		5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPicker.swift; sourceTree = "<group>"; };
 		5DF05D492BD9965B00B666B8 /* FlixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixView.swift; sourceTree = "<group>"; };
@@ -421,6 +423,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		5DA00E842BFD9B6800A29BE6 /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				5DA00E852BFD9BA000A29BE6 /* SocketIOManager.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
 		5DAD78CE2BC84D6E0086CE46 /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,6 +544,7 @@
 		C7748F1D2ABDCF2B00FBCD67 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5DA00E842BFD9B6800A29BE6 /* Chats */,
 				5D8A17B32BD2DFFF00F8B44F /* Network */,
 				C7748F1E2ABDCF3500FBCD67 /* Authentication */,
 				C7748F1F2ABDCF4600FBCD67 /* Dashboard */,
@@ -1376,6 +1387,7 @@
 				5D8A17B92BD2E13B00F8B44F /* URLPath.swift in Sources */,
 				C7A3704E2A5496AB0064FF86 /* AuthenticationViewModel.swift in Sources */,
 				C7B7B2A62A5AB09000013291 /* Place.swift in Sources */,
+				5DA00E862BFD9BA000A29BE6 /* SocketIOManager.swift in Sources */,
 				C71884562A5594E90037C5DB /* NameView.swift in Sources */,
 				ED5378552AB6F3CB00E636C0 /* LocationChangeViewViewModel.swift in Sources */,
 				C718845C2A55AAE30037C5DB /* SaveLoginInfoView.swift in Sources */,
