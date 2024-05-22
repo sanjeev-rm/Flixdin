@@ -41,6 +41,8 @@
 		5DF05D4A2BD9965B00B666B8 /* FlixView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF05D492BD9965B00B666B8 /* FlixView.swift */; };
 		5DF05D532BD99F7200B666B8 /* FlixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF05D522BD99F7200B666B8 /* FlixCell.swift */; };
 		5DF05D552BD9A6D400B666B8 /* CustomFlixPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */; };
+		5DF7FB672BFDA4320032B75A /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF7FB662BFDA4320032B75A /* ChatModel.swift */; };
+		5DF7FB692BFDA5340032B75A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF7FB682BFDA5340032B75A /* ChatViewModel.swift */; };
 		5DFCF9E22BDD006F00FA3C8B /* FlixCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFCF9E12BDD006F00FA3C8B /* FlixCellViewModel.swift */; };
 		5DFFFC222BD918C000A64AF0 /* FlixViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */; };
 		6B76A46A2A62BBCD0021A40B /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B76A4692A62BBCD0021A40B /* Notification.swift */; };
@@ -215,6 +217,8 @@
 		5DF05D492BD9965B00B666B8 /* FlixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixView.swift; sourceTree = "<group>"; };
 		5DF05D522BD99F7200B666B8 /* FlixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixCell.swift; sourceTree = "<group>"; };
 		5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlixPlayer.swift; sourceTree = "<group>"; };
+		5DF7FB662BFDA4320032B75A /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		5DF7FB682BFDA5340032B75A /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		5DFCF9E12BDD006F00FA3C8B /* FlixCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixCellViewModel.swift; sourceTree = "<group>"; };
 		5DFFFC212BD918C000A64AF0 /* FlixViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixViewModel.swift; sourceTree = "<group>"; };
 		6B76A4692A62BBCD0021A40B /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -450,6 +454,14 @@
 				5D4675492BDC08A400F83A1F /* Comments.swift */,
 			);
 			path = FlixFeed;
+			sourceTree = "<group>";
+		};
+		5DF7FB652BFDA42B0032B75A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5DF7FB662BFDA4320032B75A /* ChatModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		6B76A4682A62BB910021A40B /* Notifications */ = {
@@ -1123,6 +1135,7 @@
 		ED9B7B772A5A747F002F1A2D /* Messages */ = {
 			isa = PBXGroup;
 			children = (
+				5DF7FB652BFDA42B0032B75A /* Model */,
 				ED9B7B782A5A74F3002F1A2D /* View */,
 				ED9B7B7D2A5A7D6A002F1A2D /* ViewModel */,
 			);
@@ -1146,6 +1159,7 @@
 				ED9B7B7B2A5A7D63002F1A2D /* MessageViewViewModel.swift */,
 				ED79ABFE2A5A90B3000861F1 /* SenderMessageViewViewModel.swift */,
 				ED79AC022A5A9939000861F1 /* ReceiversMessageViewViewModel.swift */,
+				5DF7FB682BFDA5340032B75A /* ChatViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1332,6 +1346,7 @@
 				C7748F222ABDCF7F00FBCD67 /* ProfileAPIService.swift in Sources */,
 				C7C7E6572AEFFD19008DD31E /* EditProfilePicView.swift in Sources */,
 				E3CD57552A56F6690030F9DE /* EditPageView.swift in Sources */,
+				5DF7FB692BFDA5340032B75A /* ChatViewModel.swift in Sources */,
 				C7A3705A2A54A9FE0064FF86 /* ForgotPasswordView.swift in Sources */,
 				C7D43CEC2A5A9578006C95F3 /* HomeView.swift in Sources */,
 				C731CA1D2B9CDD140036EB8A /* Portfolio.swift in Sources */,
@@ -1397,6 +1412,7 @@
 				C797BB2E2A55545C006B5466 /* EmailView.swift in Sources */,
 				5D8A17B22BD2DF7C00F8B44F /* Constants.swift in Sources */,
 				EDD44F432A554AC700D4434C /* SearchFieldView.swift in Sources */,
+				5DF7FB672BFDA4320032B75A /* ChatModel.swift in Sources */,
 				C7A3704C2A545D620064FF86 /* LoginViewModel.swift in Sources */,
 				C731CA132B9C669A0036EB8A /* ConnectionCallList.swift in Sources */,
 				C709FE922A59DB59007BA34B /* ProductionHouseView.swift in Sources */,

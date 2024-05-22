@@ -45,6 +45,7 @@ class SocketIOManager: ObservableObject {
 
     func disconnect() {
         socket.disconnect()
+        print("socket status: disconnected")
         isConntected = false
     }
 
