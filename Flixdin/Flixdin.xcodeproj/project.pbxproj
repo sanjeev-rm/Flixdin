@@ -12,6 +12,7 @@
 		5D8A17B52BD2E00500F8B44F /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B42BD2E00500F8B44F /* NetworkRequest.swift */; };
 		5D8A17B72BD2E12800F8B44F /* HTTPMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B62BD2E12800F8B44F /* HTTPMethods.swift */; };
 		5D8A17B92BD2E13B00F8B44F /* URLPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8A17B82BD2E13B00F8B44F /* URLPath.swift */; };
+		5DA00E832BFD9A9C00A29BE6 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 5DA00E822BFD9A9C00A29BE6 /* SocketIO */; };
 		5DAD78D02BC84D780086CE46 /* AddFlicksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */; };
 		5DAD78D22BC85F5D0086CE46 /* VideoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */; };
 		5DD8664F2BC7284E0092191E /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD8664E2BC7284E0092191E /* YPImagePicker */; };
@@ -389,6 +390,7 @@
 				5DD8666C2BC72A040092191E /* FirebaseFirestoreCombine-Community in Frameworks */,
 				5DD8667A2BC72A040092191E /* FirebaseMLModelDownloader in Frameworks */,
 				5DD8666E2BC72A040092191E /* FirebaseFirestoreSwift in Frameworks */,
+				5DA00E832BFD9A9C00A29BE6 /* SocketIO in Frameworks */,
 				5DD8667E2BC72A040092191E /* FirebasePerformance in Frameworks */,
 				5DD866742BC72A040092191E /* FirebaseInAppMessaging-Beta in Frameworks */,
 				5DD866722BC72A040092191E /* FirebaseFunctionsCombine-Community in Frameworks */,
@@ -1226,6 +1228,7 @@
 				5DD866812BC72A040092191E /* FirebaseRemoteConfigSwift */,
 				5DD866832BC72A040092191E /* FirebaseStorage */,
 				5DD866852BC72A040092191E /* FirebaseStorageCombine-Community */,
+				5DA00E822BFD9A9C00A29BE6 /* SocketIO */,
 			);
 			productName = Flixdin;
 			productReference = C7A370202A53E8FD0064FF86 /* Flixdin.app */;
@@ -1258,6 +1261,7 @@
 			packageReferences = (
 				5DD8664D2BC7284E0092191E /* XCRemoteSwiftPackageReference "YPImagePicker" */,
 				5DD866502BC72A040092191E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5DA00E812BFD9A9C00A29BE6 /* XCRemoteSwiftPackageReference "socket" */,
 			);
 			productRefGroup = C7A370212A53E8FD0064FF86 /* Products */;
 			projectDirPath = "";
@@ -1687,6 +1691,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5DA00E812BFD9A9C00A29BE6 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		5DD8664D2BC7284E0092191E /* XCRemoteSwiftPackageReference "YPImagePicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Yummypets/YPImagePicker.git";
@@ -1706,6 +1718,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5DA00E822BFD9A9C00A29BE6 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5DA00E812BFD9A9C00A29BE6 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
 		5DD8664E2BC7284E0092191E /* YPImagePicker */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5DD8664D2BC7284E0092191E /* XCRemoteSwiftPackageReference "YPImagePicker" */;

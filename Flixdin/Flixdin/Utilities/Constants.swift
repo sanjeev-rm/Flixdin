@@ -11,4 +11,6 @@ class Constants{
     static let shared = Constants()
     
     let baseURL = "https://api.flixdin.com"
+    
+    let socketsURL = "wss://api.flixdin.com"
 }
