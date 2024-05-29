@@ -42,10 +42,11 @@ struct AllMessagesView: View {
                 }
             }
             .onAppear(perform: {
+                socketManager.connect()
                 Task{
                     await chatViewModel.getChats()
                 }
-                socketManager.connect()
+                
             })
             .onDisappear(perform: {
                 socketManager.disconnect()

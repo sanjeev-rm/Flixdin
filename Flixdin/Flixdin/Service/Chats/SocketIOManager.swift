@@ -19,8 +19,8 @@ class SocketIOManager: ObservableObject {
         guard let url = URL(string: Constants.shared.socketsURL) else {
             return
         }
+        manager = SocketManager(socketURL: URL(string: "wss://api.flixdin.com")!, config: [.log(true), .compress, .forceWebsockets(true)])
 
-        manager = SocketManager(socketURL: url, config: [.log(false), .compress, .forceWebsockets(true)])
         socket = manager.defaultSocket
     }
 
@@ -32,7 +32,7 @@ class SocketIOManager: ObservableObject {
 
         socket.on("message") { [weak self] data, _ in
 
-            guard let self = self,
+            guard let _ = self,
                   let message = data[0] as? String else {
                 return
             }
