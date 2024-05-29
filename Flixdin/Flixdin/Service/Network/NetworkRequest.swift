@@ -36,4 +36,8 @@ struct NetworkRequest {
 
         return decodeResponse
     }
+    
+    static func encodeRequestBody<T: Encodable>(_ requstBody: T) -> Data?{
+        try? JSONEncoder().encode(requstBody)
+    }
 }

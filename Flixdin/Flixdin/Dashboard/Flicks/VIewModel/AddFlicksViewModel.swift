@@ -33,7 +33,7 @@ class AddFlicksViewModel: ObservableObject {
         let requestBody = NewFlixRequest(ownerid: loggedInUserId, domain: domain, caption: caption, applicants: [""], location: location, likes: [""], flixurl: "", flixdate: "\(Date())", comments: [""])
 
         do {
-            let response: NewFlixResponse = try await NetworkRequest.request(urlPath: urlPath, method: .post, body: encodeRequestBody(requestBody))
+            let response: NewFlixResponse = try await NetworkRequest.request(urlPath: urlPath, method: .post, body: NetworkRequest.encodeRequestBody(requestBody))
 
             DispatchQueue.main.async { [weak self] in
 
@@ -44,10 +44,6 @@ class AddFlicksViewModel: ObservableObject {
         } catch {
             print("erorr adding flix \(error.localizedDescription)")
         }
-    }
-
-    private func encodeRequestBody(_ requestBody: NewFlixRequest) -> Data? {
-        try? JSONEncoder().encode(requestBody)
     }
 
     // MARK: Upload video
@@ -74,7 +70,7 @@ class AddFlicksViewModel: ObservableObject {
 
         let httpBody = NSMutableData()
 
-        httpBody.append(convertFormField(named: "id", value: self.newFlixResponse, using: boundary))
+        httpBody.append(convertFormField(named: "id", value: newFlixResponse, using: boundary))
 
         if let videoData = try? Data(contentsOf: videoURL) {
             httpBody.append(convertFileData(fieldName: "file",
@@ -94,7 +90,6 @@ class AddFlicksViewModel: ObservableObject {
                 print("Error uploading video: \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     self.isUploading = false
-                    
                 }
                 return
             }
@@ -103,7 +98,6 @@ class AddFlicksViewModel: ObservableObject {
                 print("Server error")
                 DispatchQueue.main.async {
                     self.isUploading = false
-                    
                 }
                 return
             }

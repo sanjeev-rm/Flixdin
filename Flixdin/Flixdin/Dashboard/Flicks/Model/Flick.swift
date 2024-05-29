@@ -57,8 +57,8 @@ struct UpdateFlixRequest: Encodable {
 // MARK: LikeOrDislikeFlixRequest
 
 struct LikeOrDislikeFlixRequest: Encodable {
-    let flixid: Int
-    let userid: Int
+    let flixid: String
+    let userid: String
 }
 
 // MARK: GetAllFlixRequest
@@ -96,6 +96,15 @@ struct FlixResponse: Identifiable,Decodable, Hashable{
     let embedding: String?
     
     var id: String { flixid }
+}
+
+//MARK: Like Flix Response
+struct LikeFlixResponse: Decodable{
+    var addlike_flix: Bool
+}
+
+struct DislikeFlixResponse: Decodable{
+    var deletelike_flix: Bool
 }
 
 // MARK: APIResponse
