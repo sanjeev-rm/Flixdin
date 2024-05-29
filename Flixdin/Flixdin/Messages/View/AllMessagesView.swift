@@ -48,9 +48,6 @@ struct AllMessagesView: View {
                 }
                 
             })
-            .onDisappear(perform: {
-                socketManager.disconnect()
-            })
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color(flixColor: .backgroundPrimary))
         }
@@ -67,6 +64,7 @@ extension AllMessagesView {
             
             Button{
                 // Dismiss the message view and go back to the home view
+                socketManager.disconnect()
                 homeViewModel.showMessages = false
             } label: {
                 Image(systemName: "chevron.left")

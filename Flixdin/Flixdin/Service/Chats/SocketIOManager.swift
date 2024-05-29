@@ -16,10 +16,7 @@ class SocketIOManager: ObservableObject {
     private var socket: SocketIOClient!
 
     init() {
-        guard let url = URL(string: Constants.shared.socketsURL) else {
-            return
-        }
-        manager = SocketManager(socketURL: URL(string: "wss://api.flixdin.com")!, config: [.log(true), .compress, .forceWebsockets(true)])
+        manager = SocketManager(socketURL: URL(string: "wss://api.flixdin.com")!, config: [.log(true), .compress, .reconnects(true), .secure(true), .forceWebsockets(true)])
 
         socket = manager.defaultSocket
     }
@@ -29,6 +26,8 @@ class SocketIOManager: ObservableObject {
             print("socket status: connected")
             self.isConntected = true
         }
+
+        print("connect status: \(socket.status)")
 
         socket.on("message") { [weak self] data, _ in
 
