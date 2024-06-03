@@ -98,7 +98,7 @@ class ProfileViewModel: ObservableObject {
 //                Storage().getStoredUser()
                 print("DEBUG: USER ID = \(user.id)")
             case .failure(let error):
-                print("DEBUG: \(error.localizedDescription)")
+                print("DEBUG Profile: \(error.localizedDescription)")
             }
         }
     }

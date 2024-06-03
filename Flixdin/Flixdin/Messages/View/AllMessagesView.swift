@@ -19,15 +19,11 @@ struct AllMessagesView: View {
     @StateObject var socketManager = SocketIOManager()
     @StateObject var chatViewModel = ChatViewModel()
     
+    
     var body: some View {
         
         NavigationView {
             VStack (alignment: .leading) {
-                
-                backButtonAndTitle
-                
-                searchBarView
-                
                 ScrollView {
                     VStack(spacing: 16) {
                         
@@ -41,6 +37,9 @@ struct AllMessagesView: View {
                     }
                 }
             }
+            
+            .searchable(text: $userSearchQuery, placement: .navigationBarDrawer(displayMode: .automatic))
+            .navigationBarItems(leading: backButtonAndTitle)
             .onAppear(perform: {
                 socketManager.connect()
                 Task{
@@ -75,7 +74,6 @@ extension AllMessagesView {
                 .font(.system(.title, weight: .bold))
                 .foregroundColor(Color(flixColor: .lightOlive))
         }
-        .padding(.horizontal)
     }
     
     //MARK: - SearchBar
