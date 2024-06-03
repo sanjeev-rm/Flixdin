@@ -17,4 +17,6 @@ enum URLPath: String{
     case getFlixPostedByASpecificUser = "/get-user-flix"
     case getSpeicificFlix = "/get-flix"
     case chatList = "/chat-list"
+    case userSearch = "/user-search"
+    
 }
