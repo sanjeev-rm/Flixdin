@@ -8,9 +8,8 @@
 import FirebaseAuth
 import Foundation
 
-
-
-struct ChatMessage: Codable, Hashable {
+struct ChatMessage: Codable, Identifiable {
+    let id: String = UUID().uuidString
     let content: String
     let sender_id: String
     let receiver_id: String
@@ -103,27 +102,28 @@ class ChatViewModel: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        
+
         let parameters = [
             "senderId": senderId,
             "receiverId": receiverId,
             "page": page,
             "pageSize": pageSize
-        ] as [String : Any]
+        ] as [String: Any]
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
-        
+
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else { return }
             do {
                 let decodedMessages = try JSONDecoder().decode([ChatMessage].self, from: data)
+                let sortedMessages = decodedMessages.sorted { $0.created_at < $1.created_at }
                 DispatchQueue.main.async {
-                    self.messages.append(contentsOf: decodedMessages)
-                    print("success getting paginated message")
+                    self.messages.append(contentsOf: sortedMessages)
+                    print("success getting paginated and sorted messages")
                 }
             } catch {
-                print("Error decoding messages: \(error)")
+                print("Error decoding and sorting messages: \(error)")
             }
         }.resume()
     }
+
 }

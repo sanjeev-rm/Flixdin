@@ -26,7 +26,7 @@ struct DirectMessagesView: View {
     var body: some View {
         VStack {
             ScrollView {
-                ForEach(chatViewModel.messages, id: \.self) { message in
+                ForEach(chatViewModel.messages) { message in
                     MessageView(message: message, senderId: chatViewModel.getSenderId())
                 }
             }

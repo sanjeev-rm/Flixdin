@@ -23,9 +23,6 @@ struct AllMessagesView: View {
             VStack(alignment: .leading) {
                 ScrollView {
                     VStack(spacing: 16) {
-//                        onlineUsersView
-
-//                        messageTypeView
 
                         Divider()
 
@@ -205,104 +202,6 @@ extension AllMessagesView {
             }
             .padding(.horizontal)
             .padding(.vertical, 8)
-        }
-    }
-
-    // MARK: - Online Users
-
-    private var onlineUsersView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                // Get the data from the database and count the persons that are online and show them here.
-                ForEach(1 ... 10, id: \.self) { _ in
-                    ZStack(alignment: .topTrailing) {
-                        Circle()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.clear)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 50)
-                                    .stroke(lineWidth: 2)
-                                    .frame(width: 55, height: 55)
-                                    .foregroundColor(Color(flixColor: .lightOlive))
-                            )
-
-                        AsyncImage(url: URL(string: "https://picsum.photos/50/50")!)
-                            .scaledToFit()
-                            .cornerRadius(50)
-                            .aspectRatio(contentMode: .fill)
-
-                        ZStack {
-                            Circle()
-                                .foregroundColor(.white)
-                                .frame(width: 15, height: 15)
-
-                            Circle()
-                                .foregroundColor(.green)
-                                .frame(width: 10, height: 10)
-                        }
-                        .offset(x: 6, y: 0)
-                    }
-                }
-            }
-            .padding(.vertical, 4)
-            .padding(.bottom, 8)
-            .padding(.horizontal, 16)
-        }
-    }
-
-    // MARK: - Message Type View.
-
-    private var messageTypeView: some View {
-        HStack {
-            Spacer()
-
-            Button {
-                // Primary Tab
-            } label: {
-                Text("Primary")
-                    .foregroundColor(.primary)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                    .background(
-                        Rectangle()
-                            .cornerRadius(8)
-                            .foregroundColor(Color(flixColor: .backgroundSecondary))
-                    )
-            }
-
-            Spacer()
-
-            Button {
-                // General Tab
-            } label: {
-                Text("General")
-                    .foregroundColor(.primary)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                    .background(
-                        Rectangle()
-                            .cornerRadius(8)
-                            .foregroundColor(Color(flixColor: .backgroundSecondary))
-                    )
-            }
-
-            Spacer()
-
-            Button {
-                // Requests Tab
-            } label: {
-                Text("Requests")
-                    .foregroundColor(.primary)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 16)
-                    .background(
-                        Rectangle()
-                            .cornerRadius(8)
-                            .foregroundColor(Color(flixColor: .backgroundSecondary))
-                    )
-            }
-
-            Spacer()
         }
     }
 }
