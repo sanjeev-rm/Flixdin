@@ -40,6 +40,11 @@ struct AllMessagesView: View {
             
             .searchable(text: $userSearchQuery, placement: .navigationBarDrawer(displayMode: .automatic))
             .navigationBarItems(leading: backButtonAndTitle)
+            .onSubmit(of: .search) {
+                Task{
+                    await chatViewModel.getSearchedUser()
+                }
+            }
             .onAppear(perform: {
                 socketManager.connect()
                 Task{

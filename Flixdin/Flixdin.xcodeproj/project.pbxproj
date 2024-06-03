@@ -16,6 +16,7 @@
 		5DA00E862BFD9BA000A29BE6 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA00E852BFD9BA000A29BE6 /* SocketIOManager.swift */; };
 		5DAD78D02BC84D780086CE46 /* AddFlicksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */; };
 		5DAD78D22BC85F5D0086CE46 /* VideoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */; };
+		5DBE39372C0D7167003E0E62 /* SearchedUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBE39362C0D7167003E0E62 /* SearchedUserModel.swift */; };
 		5DD8664F2BC7284E0092191E /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD8664E2BC7284E0092191E /* YPImagePicker */; };
 		5DD8665E2BC72A040092191E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD8665D2BC72A040092191E /* FirebaseAuth */; };
 		5DD866602BC72A040092191E /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 5DD8665F2BC72A040092191E /* FirebaseAuthCombine-Community */; };
@@ -214,6 +215,7 @@
 		5DA00E852BFD9BA000A29BE6 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		5DAD78CF2BC84D780086CE46 /* AddFlicksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFlicksViewModel.swift; sourceTree = "<group>"; };
 		5DAD78D12BC85F5D0086CE46 /* VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPicker.swift; sourceTree = "<group>"; };
+		5DBE39362C0D7167003E0E62 /* SearchedUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedUserModel.swift; sourceTree = "<group>"; };
 		5DF05D492BD9965B00B666B8 /* FlixView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixView.swift; sourceTree = "<group>"; };
 		5DF05D522BD99F7200B666B8 /* FlixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlixCell.swift; sourceTree = "<group>"; };
 		5DF05D542BD9A6D400B666B8 /* CustomFlixPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFlixPlayer.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				5DF7FB662BFDA4320032B75A /* ChatModel.swift */,
+				5DBE39362C0D7167003E0E62 /* SearchedUserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1387,6 +1390,7 @@
 				C7748F242ABDD02500FBCD67 /* UserNormalInfoUpdateService.swift in Sources */,
 				C797BB362A555B7B006B5466 /* MobileView.swift in Sources */,
 				C7748F182ABD529100FBCD67 /* AuthenticationAPIService.swift in Sources */,
+				5DBE39372C0D7167003E0E62 /* SearchedUserModel.swift in Sources */,
 				ED79AC032A5A9939000861F1 /* ReceiversMessageViewViewModel.swift in Sources */,
 				C731CA152B9C68DF0036EB8A /* ProfileConnectionCallView.swift in Sources */,
 				C7046C072A9C53220023BC98 /* FlickPlayer.swift in Sources */,
