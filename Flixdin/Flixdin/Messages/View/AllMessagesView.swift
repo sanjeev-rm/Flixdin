@@ -29,12 +29,13 @@ struct AllMessagesView: View {
 
                         Divider()
 
-//                        messagesListRow()
-
                         if userSearchQuery.isEmpty {
-                            messagesListRow()
+                            ForEach(chatViewModel.chatList){ chat in
+                                messagesListRow(chatResponse: chat)
+                                
+                            }
                         } else {
-                            searchResultsView() 
+                            searchResultsView()
                         }
                     }
                 }
@@ -50,7 +51,7 @@ struct AllMessagesView: View {
             .onAppear(perform: {
                 socketManager.connect()
                 Task {
-                    await chatViewModel.getChats()
+                    await chatViewModel.getChatList()
                 }
 
             })
@@ -89,7 +90,12 @@ extension AllMessagesView {
             VStack(alignment: .leading) {
                 ForEach(chatViewModel.searchedUser) { user in
 
-                    searchedUserRow(user: user)
+                    NavigationLink {
+                        DirectMessagesView(socketIOManager: socketManager, chatViewModel: chatViewModel, receiverUserId: user.id)
+                            .navigationBarBackButtonHidden()
+                    } label: {
+                        searchedUserRow(user: user)
+                    }
                 }
             }
         }
@@ -136,11 +142,11 @@ extension AllMessagesView {
     // MARK: - MessagesListView
 
     // Get all the users and display them here in the vstack
-    private func messagesListRow() -> some View {
+    private func messagesListRow(chatResponse: ChatResponse) -> some View {
         VStack {
             HStack {
                 NavigationLink {
-                    DirectMessagesView()
+                    DirectMessagesView(socketIOManager: socketManager, chatViewModel: chatViewModel, receiverUserId: chatResponse.receiver_id)
                         .navigationBarBackButtonHidden()
                 } label: {
                     HStack(spacing: 16) {
@@ -149,20 +155,22 @@ extension AllMessagesView {
                             .foregroundColor(.init(flixColor: .lightOlive))
                             .frame(height: 50)
                             .overlay(
-                                GeometryReader { proxy in
-                                    AsyncImage(url: URL(string: "https://picsum.photos/50/50")!)
-                                        .frame(width: proxy.size.width, height: proxy.size.height)
-                                        .aspectRatio(contentMode: .fit)
-                                        .clipShape(Circle())
+                                AsyncImage(url: URL(string: chatResponse.receiver_profilepic)) { image in
+                                    image.resizable()
+                                } placeholder: {
+                                    Image(systemName: "person.fill")
+                                        .resizable()
                                 }
+                                .frame(width: 50, height: 50)
+                                .clipShape(Circle())
                             )
 
                         VStack(alignment: .leading) {
-                            Text("John Doe")
+                            Text("\(chatResponse.receiver_name)")
                                 .foregroundColor(.primary)
                                 .font(.system(size: 16, weight: .semibold))
-                            if unreadMessagesCount != 0 {
-                                Text("\(unreadMessagesCount) unread messages")
+                            if Int(chatResponse.unread_count) != 0 {
+                                Text("\(chatResponse.unread_count) unread messages")
                                     .foregroundColor(.primary)
                                     .font(.system(size: 12))
                                     .bold()

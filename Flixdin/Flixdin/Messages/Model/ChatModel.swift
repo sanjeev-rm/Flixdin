@@ -18,7 +18,7 @@ struct ChatResponse: Identifiable, Decodable, Hashable{
     let receiver_id: String
     let receiver_name: String
     let receiver_profilepic: String
-    let unread_count: Int
+    let unread_count: String
     
     var id: String { room_id }
 }

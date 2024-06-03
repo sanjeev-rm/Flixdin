@@ -18,4 +18,5 @@ enum URLPath: String{
     case getSpeicificFlix = "/get-flix"
     case chatList = "/chat-list"
     case userSearch = "/user-search"
+    
 }
