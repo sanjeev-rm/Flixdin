@@ -101,7 +101,6 @@ class SocketIOManager: ObservableObject {
         }
     }
 
-
     func connect() {
         socket.connect()
     }

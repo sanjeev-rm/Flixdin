@@ -8,8 +8,9 @@
 import FirebaseAuth
 import Foundation
 
-struct ChatMessage: Codable, Identifiable {
-    let id: String
+
+
+struct ChatMessage: Codable, Hashable {
     let content: String
     let sender_id: String
     let receiver_id: String
@@ -17,7 +18,7 @@ struct ChatMessage: Codable, Identifiable {
     let read: Bool
 
     init?(data: [String: Any]) {
-        guard let id = data["id"] as? String,
+        guard  
               let content = data["content"] as? String,
               let sender_id = data["sender_id"] as? String,
               let receiver_id = data["receiver_id"] as? String,
@@ -25,7 +26,7 @@ struct ChatMessage: Codable, Identifiable {
               let read = data["read"] as? Bool else {
             return nil
         }
-        self.id = id
+        
         self.content = content
         self.sender_id = sender_id
         self.receiver_id = receiver_id
@@ -102,6 +103,8 @@ class ChatViewModel: ObservableObject {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        
         let parameters = [
             "senderId": senderId,
             "receiverId": receiverId,
@@ -109,13 +112,14 @@ class ChatViewModel: ObservableObject {
             "pageSize": pageSize
         ] as [String : Any]
         request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
-
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else { return }
             do {
                 let decodedMessages = try JSONDecoder().decode([ChatMessage].self, from: data)
                 DispatchQueue.main.async {
                     self.messages.append(contentsOf: decodedMessages)
+                    print("success getting paginated message")
                 }
             } catch {
                 print("Error decoding messages: \(error)")

@@ -169,15 +169,19 @@ extension AllMessagesView {
                             Text("\(chatResponse.receiver_name)")
                                 .foregroundColor(.primary)
                                 .font(.system(size: 16, weight: .semibold))
-                            if Int(chatResponse.unread_count) != 0 {
-                                Text("\(chatResponse.unread_count) unread messages")
-                                    .foregroundColor(.primary)
-                                    .font(.system(size: 12))
-                                    .bold()
-                            } else {
-                                Text(isTyping ? "Typing..." : "\(lastMessage)")
-                                    .font(.system(size: 12, weight: .light))
-                            }
+                            
+                            Text("\(chatResponse.latest_message_content)")
+                                .font(.system(size: 12, weight: .light))
+                            
+//                            if Int(chatResponse.unread_count) != 0 {
+//                                Text("\(chatResponse.unread_count) unread messages")
+//                                    .foregroundColor(.primary)
+//                                    .font(.system(size: 12))
+//                                    .bold()
+//                            } else {
+//                                Text("\(chatResponse.latest_message_content)")
+//                                    .font(.system(size: 12, weight: .light))
+//                            }
                         }
                     }
 
