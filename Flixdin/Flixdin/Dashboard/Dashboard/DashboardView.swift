@@ -51,7 +51,8 @@ struct DashboardView: View {
                 }
                 .tag(2)
             
-            FlicksView()
+            //FlicksView()
+            FlixView()
                 .id(resetNavigationIds[3])
                 .tabItem {
                     Label("Flicks", systemImage: "film")

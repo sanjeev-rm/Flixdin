@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 import SwiftUI
 
 class ProfileViewModel: ObservableObject {
@@ -53,7 +54,12 @@ class ProfileViewModel: ObservableObject {
     func getAndUpdateUserProfileView() {
         showGettingUserProgress = true
         
-        guard let loggedInUserId = Storage.loggedInUserId else {
+//        guard let loggedInUserId = Storage.loggedInUserId else {
+//            print("Logged In UserId invalid - Updating User")
+//            return
+//        }
+        
+        guard let loggedInUserId = Auth.auth().currentUser?.uid else {
             print("Logged In UserId invalid - Updating User")
             return
         }
@@ -92,7 +98,7 @@ class ProfileViewModel: ObservableObject {
 //                Storage().getStoredUser()
                 print("DEBUG: USER ID = \(user.id)")
             case .failure(let error):
-                print("DEBUG: \(error.localizedDescription)")
+                print("DEBUG Profile: \(error.localizedDescription)")
             }
         }
     }
@@ -102,7 +108,12 @@ class ProfileViewModel: ObservableObject {
     func updateUserProfileInfo(completion: @escaping (Bool) -> Void) {
         showUpdatingUserProfileProgress = true
         
-        guard let loggedInUserId = Storage.loggedInUserId else {
+//        guard let loggedInUserId = Storage.loggedInUserId else {
+//            print("Logged In UserId invalid - Updating User")
+//            completion(false)
+//            return
+//        }
+        guard let loggedInUserId = Auth.auth().currentUser?.uid else {
             print("Logged In UserId invalid - Updating User")
             completion(false)
             return
@@ -150,12 +161,17 @@ class ProfileViewModel: ObservableObject {
     // MARK: - Function to delete profile pic url
     
     func deleteProfilePicUrl(completion: @escaping (Bool) -> Void) {
-        guard let userId = Storage.loggedInUserId else {
+//        guard let userId = Storage.loggedInUserId else {
+//            completion(false)
+//            return
+//        }
+        guard let loggedInUserId = Auth.auth().currentUser?.uid else {
+            print("Logged In UserId invalid - Updating User")
             completion(false)
             return
         }
         let newUrl = ""
-        ProfileAPIService().updateUserProfilePicUrl(userid: userId, newUrl: newUrl) { [unowned self]result in
+        ProfileAPIService().updateUserProfilePicUrl(userid: loggedInUserId, newUrl: newUrl) { [unowned self]result in
             switch result {
             case .success(let success):
                 print("DEBUG: \(success)")
@@ -189,7 +205,13 @@ extension ProfileViewModel {
     
     static func doAction(_ action: ProfileAPIService.ActionOnUser, on onUser: String, completion: @escaping (Bool) -> Void) {
         
-        guard let loggedInUserId = Storage.loggedInUserId else {
+//        guard let loggedInUserId = Storage.loggedInUserId else {
+//            completion(false)
+//            return
+//        }
+        
+        guard let loggedInUserId = Auth.auth().currentUser?.uid else {
+            print("Logged In UserId invalid - Updating User")
             completion(false)
             return
         }
