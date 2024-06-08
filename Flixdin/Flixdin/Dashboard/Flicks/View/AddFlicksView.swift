@@ -10,6 +10,9 @@ import PhotosUI
 import SwiftUI
 
 struct AddFlicksView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    
     @State var showingPicker = false
     @State var selectedVideoURL: URL?
     @Binding var showAddFlicksView: Bool
@@ -19,43 +22,56 @@ struct AddFlicksView: View {
     var body: some View {
         NavigationStack {
             VStack {
-            
-                if let selectedVideoURL {
-                    VideoPlayer(player: .init(url: selectedVideoURL))
-                        .frame(height: 200)
-                }
-
-                HStack {
-                    Button("Select Video") {
-                        
-                        if (!addFlicksViewModel.caption.isEmpty && !addFlicksViewModel.location.isEmpty && !addFlicksViewModel.domain.isEmpty){
-                            
-                            Task{
-                                await addFlicksViewModel.addFlix()
-                            }
-                            showingPicker = true
-                        }
-                       
-                    }
-                    .buttonStyle(.borderedProminent)
-
-                    Button("Post Video") {
-                        var _ = print("flixid \(addFlicksViewModel.newFlixResponse)")
-                        addFlicksViewModel.uploadSelectedVideo(pickedVideoURL: selectedVideoURL)
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
+                
+                Divider()
 
                 TextField("Caption", text: $addFlicksViewModel.caption)
                     .padding()
+                
+                Divider()
 
                 TextField("Location", text: $addFlicksViewModel.location)
                     .padding()
+                
+                Divider()
 
                 TextField("Domain", text: $addFlicksViewModel.domain)
                     .padding()
                 
-                Text("Flix Upload Status Code: \(addFlicksViewModel.status)")
+                Divider()
+                
+                Button {
+                    if (!addFlicksViewModel.caption.isEmpty && !addFlicksViewModel.location.isEmpty && !addFlicksViewModel.domain.isEmpty){
+                        
+                        Task{
+                            await addFlicksViewModel.addFlix()
+                        }
+                        showingPicker = true
+                    }
+                   
+                } label: {
+                    Text("Select video")
+                        .padding()
+                        .foregroundStyle(.accent)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                
+                if let selectedVideoURL {
+                    VideoPlayer(player: .init(url: selectedVideoURL))
+                        .frame(height: 200)
+                }
+                
+                Divider()
+                
+                Spacer()
+                
+                FlixdinButton(labelText: "Add Flix", showProgress: addFlicksViewModel.isUploading) {
+                    var _ = print("flixid \(addFlicksViewModel.newFlixResponse)")
+                    addFlicksViewModel.uploadSelectedVideo(pickedVideoURL: selectedVideoURL)
+                }
+                .padding(.horizontal)
+                
+//                Text("Flix Upload Status Code: \(addFlicksViewModel.status)")
                 
                 //respond to the status code based on the design
                 //MARK: flow of this view:
@@ -67,14 +83,24 @@ struct AddFlicksView: View {
                     5. A full screen progress view appears until the a response is given by the post video request
                  */
 
-                Spacer()
-
             }.overlay(content: {
                 if addFlicksViewModel.isUploading {
                     Rectangle()
-                        .fill(.ultraThinMaterial)
+                        .fill(Color(flixColor: .backgroundPrimary))
                         .overlay {
-                            ProgressView()
+                            if addFlicksViewModel.status != 0 {
+                                PostedView()
+                                    .onAppear {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {dismiss()}
+                                    }
+                            } else {
+                                VStack(spacing: 16) {
+                                    ProgressView()
+                                    Text("Uploading..")
+                                        .fontWeight(.medium)
+                                        .foregroundStyle(Color(flixColor: .darkOlive))
+                                }
+                            }
                         }
                 }
             })
@@ -93,6 +119,7 @@ struct AddFlicksView: View {
                     } label: {
                         Image(systemName: "xmark")
                     }
+                    .foregroundStyle(.accent)
                 }
             }
         }

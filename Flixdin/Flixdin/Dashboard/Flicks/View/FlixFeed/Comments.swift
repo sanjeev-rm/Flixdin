@@ -37,12 +37,14 @@ struct CommentsView: View {
             }
 
             Spacer()
-
+            
+            Divider()
             commentBox()
         }
         .onAppear(perform: {
             print("\(Date())")
         })
+        .background(Color.flixColorBackgroundPrimary)
     }
 }
 
@@ -65,7 +67,7 @@ extension CommentsView {
     private func commentCell(comment: Binding<Comment>, indentLevel: Int) -> AnyView {
         AnyView(
             VStack(alignment: .leading, spacing: 10) {
-                HStack {
+                HStack(alignment: .top) {
                     if indentLevel > 0 { Spacer().frame(width: CGFloat(indentLevel * 20)) }
                     Circle()
                         .frame(width: 50, height: 50)
@@ -113,8 +115,10 @@ extension CommentsView {
 
     private func commentBox() -> some View {
         HStack {
-            TextField("Your Comment", text: $yourComment)
-            Image(systemName: "paperplane.fill")
+            TextField("Type Your Comment here", text: $yourComment)
+            Image(systemName: "arrow.up.circle.fill")
+                .dynamicTypeSize(.accessibility1)
+                .foregroundStyle(.accent)
         }
         .padding()
     }

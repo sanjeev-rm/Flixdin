@@ -23,7 +23,7 @@ struct ProfilePictureView: View {
             Image(systemName: "person.crop.circle.fill")
                 .resizable()
                 .scaledToFill()
-                .foregroundColor(Color(.secondarySystemFill))
+                .foregroundColor(Color(.secondaryLabel))
         }
         .aspectRatio(contentMode: .fill)
         .frame(width: imageWidth, height: imageHeight)

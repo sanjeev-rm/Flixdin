@@ -20,6 +20,8 @@ struct DirectMessagesView: View {
     
     
     let receiverUserId: String
+    @State var receiver: User?
+    @State var gettingReceiver: Bool = false
 
     @State private var messageText: String = ""
 
@@ -30,6 +32,7 @@ struct DirectMessagesView: View {
                     MessageView(message: message, senderId: chatViewModel.getSenderId())
                 }
             }
+            
             messageInputField
         }
         .onAppear {
@@ -41,22 +44,48 @@ struct DirectMessagesView: View {
         .onDisappear {
             socketIOManager.leaveRoom(senderId: chatViewModel.getSenderId(), receiverId: receiverUserId)
         }
-        .navigationTitle("Chat")
-        .navigationBarItems(leading: Button("Back") {
-            dismiss()
-        })
+        .navigationTitle(receiver?.fullName ?? "Chat")
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.accent)
+                }
+            }
+        }
+        .background(Color.flixColorBackgroundPrimary)
+        .redacted(reason: gettingReceiver ? .placeholder : [])
+        .onAppear {
+            gettingReceiver = true
+            ProfileAPIService().getUser(userId: receiverUserId) { result in
+                DispatchQueue.main.async {
+                    self.gettingReceiver = false
+                    switch result {
+                    case .success(let user):
+                        self.receiver = User(responseBody: user)
+                    case .failure(let failure):
+                        print("DEBUG: Direct message couldn't get receiver - \(failure.localizedDescription)")
+                    }
+                }
+            }
+        }
     }
     
     var messageInputField: some View {
-        HStack {
-            TextField("Type a message...", text: $messageText)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+        HStack(alignment: .top) {
+            TextField("Type a message...", text: $messageText, axis: .vertical)
+                .multilineTextAlignment(.leading)
             
             Button(action: sendMessage) {
                 Image(systemName: "arrow.up.circle.fill")
+                    .dynamicTypeSize(.accessibility1)
+                    .foregroundStyle(.accent)
             }
         }
         .padding()
+        .background(.thinMaterial)
     }
     
     private func sendMessage() {
@@ -100,5 +129,3 @@ struct DirectMessagesView_Previews: PreviewProvider {
         }
     }
 }
-
-

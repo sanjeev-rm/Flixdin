@@ -10,20 +10,44 @@ import AVKit
 
 struct FlickPlayer: View {
     
-    @Binding var flick: Flick
+    let flix: FlixResponse
+    var player: AVPlayer?
+    init(flix: FlixResponse) {
+        self.flix = flix
+
+        if let url = URL(string: flix.flixurl) {
+            player = AVPlayer(url: url)
+        } else {
+            print("error getting url")
+            player = nil
+        }
+    }
     
     @State var showMore: Bool = false
-    @State var isLiked: Bool = false
     @State var isPaused: Bool = false
+    @State var likeStatus: Bool = false
+    @State var showComments: Bool = false
+    @StateObject var flixCellViewModel = FlixCellViewModel()
+    
+    @State var owner: User?
+    @State var gettingOwner: Bool = false
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            if let player = flick.player {
-                
-                CustomVideoPlayer(player: player)
-                    .onTapGesture {
-                        playerPausePlay(player: player)
-                    }
+            if let player = player {
+                if let url = URL(string: flix.flixurl) {
+                    CustomFlixPlayer(player: player)
+                        .ignoresSafeArea()
+                        .onTapGesture {
+                            playerPausePlay(player: player)
+                        }
+                } else {
+                    Rectangle()
+                        .foregroundColor(.blue)
+                        .overlay {
+                            Text("Error getting video")
+                        }
+                }
                 
                 if isPaused {
                     Image(systemName: "play.circle.fill")
@@ -60,17 +84,14 @@ struct FlickPlayer: View {
                             showMore.toggle()
                         }
                     }
+//                    .ignoresSafeArea()
                 
                 VStack {
-                    
                     HStack(alignment: .bottom) {
                         userInfoAndDescription
-                        
                         Spacer()
-                        
                         actionButtonsView
                     }
-                    
 //                    musicInfoView
                 }
                 .padding(16)
@@ -79,6 +100,9 @@ struct FlickPlayer: View {
         .onAppear {
             self.isPaused = false
         }
+        .sheet(isPresented: $showComments, content: {
+            CommentsView()
+        })
     }
 }
 
@@ -93,7 +117,7 @@ extension FlickPlayer {
             if showMore {
                 
                 ScrollView(.vertical, showsIndicators: false) {
-                    Text(flick.mediaFile.title + flick.mediaFile.description)
+                    Text(flix.caption)
                         .foregroundColor(.white)
                         .font(.callout)
                 }
@@ -107,15 +131,17 @@ extension FlickPlayer {
                         showMore.toggle()
                     }
                 } label: {
-                    HStack {
-                        Text(flick.mediaFile.title)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(flix.caption)
                             .foregroundColor(.white)
                             .font(.callout)
                             .fontWeight(.semibold)
+                            .multilineTextAlignment(.leading)
+                            .frame(height: 16, alignment: .topLeading)
                         
                         Text("more")
                             .font(.callout.bold())
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -125,50 +151,90 @@ extension FlickPlayer {
     
     private var profileUsernameFollowButton: some View {
         HStack {
-            Image(systemName: "person.circle.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 44, height: 44)
-                .foregroundColor(.gray)
-                .background(
-                    Color.white
-                        .cornerRadius(32)
-                )
-            Text("Username")
-                .font(.headline)
-                .foregroundColor(.white)
-            Button {
-                // Follow the user
+            
+            NavigationLink {
+                OtherUserProfileView(user: owner ?? User())
             } label: {
-                Text("Follow")
-                    .font(.caption.bold())
+                ProfilePictureView(imageUrl: URL(string: owner?.profilePic ?? ""), borderColor: .accent, borderWidth: 3, imageWidth: 40, imageHeight: 40)
+                
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(owner?.fullName ?? "Username")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                }
             }
-            .buttonStyle(.borderedProminent)
+            
+//            Button {
+//                // Follow the user
+//            } label: {
+//                Text("Follow")
+//                    .font(.caption.bold())
+//                    .foregroundColor(.white)
+//                    .padding(8)
+//                    .padding(.horizontal, 8)
+//                    .background(.accent)
+//                    .cornerRadius(4)
+//            }
+            
+        }
+        .redacted(reason: gettingOwner ? .placeholder : [])
+        .onAppear {
+            gettingOwner = true
+            ProfileAPIService().getUser(userId: flix.ownerid) { result in
+                DispatchQueue.main.async {
+                    self.gettingOwner = false
+                    switch result {
+                    case .success(let user):
+                        self.owner = User(responseBody: user)
+                    case .failure(let failure):
+                        print("DEBUG: Post couldn't get owner - \(failure.localizedDescription)")
+                    }
+                }
+            }
+            likeStatus = FlixCellViewModel.hasUserLiked(flix: flix)
         }
     }
     
     private var actionButtonsView: some View {
         VStack(spacing: 16) {
-            Button {
-                // Toggle respective values
-                withAnimation {
-                    isLiked.toggle()
+            Button(action: {
+                
+                if likeStatus{
+                    Task{
+                        await flixCellViewModel.dislikeFlix(flixid: flix.flixid)
+                        likeStatus.toggle()
+                    }
+                } else{
+                    Task{
+                        await flixCellViewModel.likeFlix(flixid: flix.flixid)
+                        likeStatus.toggle()
+                    }
                 }
-            } label: {
+                
+               
+            }, label: {
                 VStack {
-                    Image(systemName: isLiked ? "heart.fill" : "heart")
+                    Image(systemName: "heart.fill")
                         .dynamicTypeSize(.accessibility1)
-                        .foregroundColor(isLiked ? Color(.systemRed) : .white)
-                    Text("10")
+                        .foregroundColor(likeStatus ? Color.red : .white)
+                    Text("\(flix.likes.count)")
                         .font(.callout)
                         .foregroundColor(.white)
+                        .bold()
                 }
+            })
+            
+            flickActionButton(imageSystemName: "message.fill", text: "\(flix.comments.count)") {
+                showComments.toggle()
             }
-            flickActionButton(imageSystemName: "message", text: "3")
-            flickActionButton(imageSystemName: "paperplane")
-                .padding(.bottom, 8)
-            flickActionButton(imageSystemName: "ellipsis")
-                .rotationEffect(.degrees(90))
+            
+            flickActionButton(imageSystemName: "bookmark.fill") {
+                // save flick
+            }
+            
+            flickActionButton(imageSystemName: "paperplane.fill") {
+                // share flick
+            }
         }
         .padding(.bottom, 27)
     }
@@ -201,9 +267,10 @@ extension FlickPlayer {
         }
     }
     
-    private func flickActionButton(imageSystemName: String, text: String? = nil) -> some View {
+    private func flickActionButton(imageSystemName: String, text: String? = nil, action: @escaping ()->Void) -> some View {
         Button {
             // Toggle respective values
+            action()
         } label: {
             VStack {
                 Image(systemName: imageSystemName)
@@ -230,4 +297,8 @@ extension FlickPlayer {
             }
         }
     }
+}
+
+#Preview {
+    FlickPlayer(flix: FlixResponse(flixid: "", ownerid: "", domain: "", caption: "Hello there, today we are testing the samsung galaxy's zoom. We're even checking the stabilization.", applicants: [""], location: "", likes: [""], flixurl: "https://minio.flixdin.com/test/flix/01231235435/playlist.m3u8", flixdate: "", comments: [""], banned: false, embedding: ""))
 }
