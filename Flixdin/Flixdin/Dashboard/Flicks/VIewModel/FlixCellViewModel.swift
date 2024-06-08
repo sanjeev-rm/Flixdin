@@ -57,4 +57,21 @@ class FlixCellViewModel: ObservableObject{
             print("like flix fail \(error)")
         }
     }
+    
+    // MARK: - Helpers
+    
+    /// Function to check if current user has liked flix
+    static func hasUserLiked(flix: FlixResponse) -> Bool {
+        guard let loggedInUserId = Storage.loggedInUserId else {
+            print("Logged In UserId invalid - Post - Do action on post")
+            return false
+        }
+        
+        for likedUser in flix.likes {
+            if likedUser == loggedInUserId {
+                return true
+            }
+        }
+        return false
+    }
 }

@@ -23,57 +23,60 @@ struct FlicksView: View {
     @StateObject var flixViewModel = FlixViewModel()
     
     var body: some View {
-        
-        GeometryReader { proxy in
-            let size = proxy.size
-            
-            ZStack {
-                TabView(selection: $currentFlick) {
-                    ForEach($flicks) { $flick in
-                        FlickPlayer(flick: $flick)
-                            .frame(width: size.width)
-                            .rotationEffect(.init(degrees: -90))
-                            .ignoresSafeArea(.all, edges: .top)
-                    }
-                }
-                .rotationEffect(.init(degrees: 90))
-                .frame(width: size.height)
-                .tabViewStyle(.page(indexDisplayMode: .never))
-                .frame(width: size.width)
+        NavigationView {
+            GeometryReader { proxy in
+                let size = proxy.size
                 
-                HStack() {
-                    Text("Flicks")
-                        .font(.title.bold())
-                    Spacer()
-                    Button {
-                        showAddFlickView = true
-                    } label: {
-                        Image(systemName: "plus")
+                ZStack {
+                    TabView(selection: $currentFlick) {
+                        ForEach(flixViewModel.allFlix) { flix in
+                            FlickPlayer(flix: flix)
+                                .frame(width: size.width)
+                                .rotationEffect(.init(degrees: -90))
+                                .ignoresSafeArea(.all, edges: .top)
+                                .tag(flix)
+                        }
                     }
-                    .shadow(radius: 8)
-                    .padding(4)
-                    .background(.regularMaterial)
-                    .cornerRadius(4)
-                    .foregroundColor(.accentColor)
+                    .rotationEffect(.init(degrees: 90))
+                    .frame(width: size.height)
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+                    .frame(width: size.width)
+                    
+                    HStack() {
+                        Text("Flicks")
+                            .font(.title.bold())
+                        Spacer()
+                        Button {
+                            showAddFlickView = true
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                        .shadow(radius: 8)
+                        .padding(4)
+                        .background(.regularMaterial)
+                        .cornerRadius(4)
+                        .foregroundStyle(.accent)
+                    }
+                    .foregroundColor(.white)
+                    .padding(.top, 52)
+                    .padding([.horizontal], 24)
+                    .padding(.bottom)
+                    .background(.ultraThinMaterial)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
-                .foregroundColor(.white)
-                .padding(.top, 52)
-                .padding([.horizontal], 24)
-                .padding(.bottom)
-                .background(.ultraThinMaterial)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
+            .ignoresSafeArea(.all, edges: .top)
+            .background(Color.black.ignoresSafeArea())
+            .fullScreenCover(isPresented: $showAddFlickView, onDismiss: {}, content: {
+                AddFlicksView(showAddFlicksView: $showAddFlickView)
+            })
+            .onAppear(perform: {
+                Task{
+                    await flixViewModel.getAllFlix()
+                }
+            })
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .ignoresSafeArea(.all, edges: .top)
-        .background(Color.black.ignoresSafeArea())
-        .fullScreenCover(isPresented: $showAddFlickView, onDismiss: {}, content: {
-            AddFlicksView(showAddFlicksView: $showAddFlickView)
-        })
-        .onAppear(perform: {
-            Task{
-                await flixViewModel.getAllFlix()
-            }
-        })
     }
 }
 

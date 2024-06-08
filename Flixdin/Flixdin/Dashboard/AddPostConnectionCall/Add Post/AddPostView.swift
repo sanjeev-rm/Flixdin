@@ -156,8 +156,7 @@ extension AddPostView {
     }
     
     private var addPostButton: some View {
-        Button {
-            print("DEBUG: Make new Post")
+        FlixdinButton(labelText: "Post", showProgress: addPostVM.showCreatingProgress) {
             addPostVM.createNewPost { success in
                 if success {
                     print("DEBUG: Success, Posted")
@@ -165,25 +164,6 @@ extension AddPostView {
                     print("DEBUG: Error, Couldn't post")
                 }
             }
-        } label: {
-            HStack {
-                Spacer()
-                ZStack {
-                    if addPostVM.showCreatingProgress {
-                        ProgressView()
-                            .dynamicTypeSize(.xxxLarge)
-                    } else {
-                        Text("Post")
-                    }
-                }
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(Color(flixColor: .darkOlive))
-                Spacer()
-            }
-            .padding()
-            .background(Color.accentColor)
-            .cornerRadius(8)
         }
         .padding(.horizontal)
         .disabled(!addPostVM.isAllAvailable())

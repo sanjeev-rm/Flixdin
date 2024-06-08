@@ -78,8 +78,7 @@ extension AddConnectionCallView {
     }
     
     private var addButton: some View {
-        Button {
-            // Adds the connection call
+        FlixdinButton(labelText: "Add", showProgress: newConnectionCallViewModel.showCreatingProgress) {
             newConnectionCallViewModel.createNewConnectionCall { success in
                 if success {
                     print("DEBUG: Success")
@@ -88,25 +87,6 @@ extension AddConnectionCallView {
                     print("DEUBG: Error")
                 }
             }
-        } label: {
-            HStack {
-                Spacer()
-                ZStack {
-                    if newConnectionCallViewModel.showCreatingProgress {
-                        ProgressView()
-                            .dynamicTypeSize(.xxxLarge)
-                    } else {
-                        Text("Add")
-                    }
-                }
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(Color(flixColor: .darkOlive))
-                Spacer()
-            }
-            .padding()
-            .background(Color.accentColor)
-            .cornerRadius(8)
         }
         .padding(.horizontal)
         .disabled(!newConnectionCallViewModel.isAllAvailable())

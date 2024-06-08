@@ -28,12 +28,14 @@ struct FlixCell: View {
             player = nil
         }
     }
+    
+//    @State var showMore: Bool = false
 
     var body: some View {
         ZStack {
             if let url = URL(string: flix.flixurl) {
                 CustomFlixPlayer(player: player ?? AVPlayer(url: URL(string: "")!))
-
+                    .ignoresSafeArea()
             } else {
                 Rectangle()
                     .foregroundColor(.blue)
@@ -65,27 +67,26 @@ struct FlixCell: View {
     }
 }
 
-#Preview {
-    FlixCell(flix: FlixResponse(flixid: "", ownerid: "", domain: "", caption: "", applicants: [""], location: "", likes: [""], flixurl: "https://minio.flixdin.com/test/flix/01231235435/playlist.m3u8", flixdate: "", comments: [""], banned: false, embedding: ""))
-}
-
 extension FlixCell {
     // MARK: user details
 
     private func userDetails() -> some View {
         VStack(alignment: .leading) {
-            Text("some.user")
+            profileUsernameFollowButton
+            
+            Text(flix.caption)
+                .foregroundColor(.white)
+                .font(.callout)
                 .fontWeight(.semibold)
-            Text("some super long capiton")
         }
-        .foregroundColor(.white)
-        .font(.subheadline)
     }
 
     // MARK: actions
 
     private func actions() -> some View {
+        
         VStack(spacing: 28) {
+            
             Button(action: {
                 
                 if likeStatus{
@@ -104,48 +105,112 @@ extension FlixCell {
             }, label: {
                 VStack {
                     Image(systemName: "heart.fill")
-                        .resizable()
-                        .frame(width: 28, height: 28)
+                        .dynamicTypeSize(.accessibility1)
                         .foregroundColor(likeStatus ? Color.red : .white)
                     Text("\(flix.likes.count)")
-                        .font(.caption)
+                        .font(.callout)
                         .foregroundColor(.white)
                         .bold()
                 }
             })
-
-            Button(action: {
+            
+            flickActionButton(imageSystemName: "message.fill", text: "\(flix.comments.count)") {
                 showComments.toggle()
-
-            }, label: {
-                VStack {
-                    Image(systemName: "ellipsis.bubble.fill")
-                        .resizable()
-                        .frame(width: 28, height: 28)
-                        .foregroundColor(.white)
-                    Text("\(flix.comments.count)")
-                        .font(.caption)
-                        .foregroundColor(.white)
-                        .bold()
-                }
-
-            })
-
-            Button(action: {
-            }, label: {
-                Image(systemName: "bookmark.fill")
-                    .resizable()
-                    .frame(width: 22, height: 28)
-                    .foregroundColor(.white)
-            })
-
-            Button(action: {
-            }, label: {
-                Image(systemName: "arrowshape.turn.up.right.fill")
-                    .resizable()
-                    .frame(width: 28, height: 28)
-                    .foregroundColor(.white)
-            })
+            }
+            
+            flickActionButton(imageSystemName: "bookmark.fill") {
+                // save flick
+            }
+            
+            flickActionButton(imageSystemName: "paperplane.fill") {
+                // share flick
+            }
         }
     }
+}
+
+extension FlixCell {
+//    private var userInfoAndDescription: some View {
+//        VStack(alignment: .leading) {
+//            profileUsernameFollowButton
+//            
+//            if showMore {
+//                
+//                ScrollView(.vertical, showsIndicators: false) {
+//                    Text(flix.caption)
+//                        .foregroundColor(.white)
+//                        .font(.callout)
+//                }
+//                .frame(height: 150)
+//                
+//            } else {
+//                
+//                Button {
+//                    // Show more of the caption
+//                    withAnimation {
+//                        showMore.toggle()
+//                    }
+//                } label: {
+//                    HStack {
+//                        Text(flix.caption)
+//                            .foregroundColor(.white)
+//                            .font(.callout)
+//                            .fontWeight(.semibold)
+//                            .multilineTextAlignment(.leading)
+//                        
+//                        Text("more")
+//                            .font(.callout.bold())
+//                            .foregroundColor(.gray)
+//                    }
+//                    .frame(maxWidth: .infinity, alignment: .leading)
+//                }
+//                .disabled(flix.caption.count < 20)
+//            }
+//        }
+//    }
+    
+    private var profileUsernameFollowButton: some View {
+        HStack {
+            Image(systemName: "person.circle.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 44, height: 44)
+                .foregroundColor(.gray)
+                .background(
+                    Color.white
+                        .cornerRadius(32)
+                )
+            Text("Username")
+                .font(.headline)
+                .foregroundColor(.white)
+            Button {
+                // Follow the user
+            } label: {
+                Text("Follow")
+                    .font(.caption.bold())
+            }
+            .buttonStyle(.borderedProminent)
+        }
+    }
+    
+    private func flickActionButton(imageSystemName: String, text: String? = nil, action: @escaping ()->Void ) -> some View {
+        Button {
+            // Toggle respective values
+            action()
+        } label: {
+            VStack {
+                Image(systemName: imageSystemName)
+                    .dynamicTypeSize(.accessibility1)
+                if let text = text {
+                    Text(text)
+                        .font(.callout)
+                }
+            }
+            .foregroundColor(.white)
+        }
+    }
+}
+
+#Preview {
+    FlixCell(flix: FlixResponse(flixid: "", ownerid: "", domain: "", caption: "Hello there, today we are testing the samsung galaxy's zoom.", applicants: [""], location: "", likes: [""], flixurl: "https://minio.flixdin.com/test/flix/01231235435/playlist.m3u8", flixdate: "", comments: [""], banned: false, embedding: ""))
 }

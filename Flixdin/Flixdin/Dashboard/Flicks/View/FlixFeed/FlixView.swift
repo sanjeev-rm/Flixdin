@@ -21,6 +21,7 @@ struct FlixView: View {
                         FlixCell(flix: flix)
                             .frame(width: proxy.size.width)
                             .rotationEffect(Angle(degrees: -90))
+                            .ignoresSafeArea(.all, edges: .top)
                             .tag(flix)
                     }
                 }
@@ -54,6 +55,7 @@ extension FlixView {
                 showAddFlickView = true
             } label: {
                 Image(systemName: "plus")
+                    .foregroundColor(.accent)
             }
             .shadow(radius: 8)
             .padding(4)
