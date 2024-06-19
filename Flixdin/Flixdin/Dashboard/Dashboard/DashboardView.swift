@@ -67,6 +67,7 @@ struct DashboardView: View {
                 }
                 .tag(4)
         }
+        .accentColor(.accent)
         .onAppear {
             let tabBarAppearance = UITabBarAppearance()
             tabBarAppearance.configureWithOpaqueBackground()

@@ -84,18 +84,23 @@ extension ForgotPasswordOtpView {
     
     /// The next button
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next") {
             // Navigate to ResetPasswordVeiw
             // MARK: Send otp to backend for verification
             forgotPasswordViewModel.navigateToResetPassword = true
-        } label: {
-            Text("Next")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
+//        Button {
+//            // Navigate to ResetPasswordVeiw
+//            // MARK: Send otp to backend for verification
+//            forgotPasswordViewModel.navigateToResetPassword = true
+//        } label: {
+//            Text("Next")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
     }
 }
 

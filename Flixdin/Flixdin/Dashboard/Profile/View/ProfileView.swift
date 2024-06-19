@@ -52,7 +52,7 @@ struct ProfileView: View {
                 Text("Are you sure?")
             }
 //            .redacted(reason: profileViewModel.showGettingUserProgress ? .placeholder: [])
-            .disabled(profileViewModel.showGettingUserProgress)
+//            .disabled(profileViewModel.showGettingUserProgress)
             .task {
                 profileViewModel.getAndUpdateUserProfileView()
             }

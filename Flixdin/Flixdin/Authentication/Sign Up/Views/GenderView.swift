@@ -93,7 +93,7 @@ extension GenderView {
     
     /// The next button
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next", showProgress: signUpViewModel.showUpdatingGenderProgress) {
             signUpViewModel.updateUserGender { success in
                 if success {
                     DispatchQueue.main.async {
@@ -106,20 +106,34 @@ extension GenderView {
                     }
                 }
             }
-        } label: {
-            ZStack {
-                if signUpViewModel.showUpdatingGenderProgress {
-                    ProgressView()
-                } else {
-                    Text("Next")
-                }
-            }
-            .font(.system(size: 22))
-            .foregroundColor(.init(flixColor: .darkOlive))
-            .frame(height: 40)
-            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
+//        Button {
+//            signUpViewModel.updateUserGender { success in
+//                if success {
+//                    DispatchQueue.main.async {
+//                        // Navigate to BioView
+//                        signUpViewModel.navigateToBioView = true
+//                    }
+//                } else {
+//                    DispatchQueue.main.async {
+//                        showAlert = true
+//                    }
+//                }
+//            }
+//        } label: {
+//            ZStack {
+//                if signUpViewModel.showUpdatingGenderProgress {
+//                    ProgressView()
+//                } else {
+//                    Text("Next")
+//                }
+//            }
+//            .font(.system(size: 22))
+//            .foregroundColor(.init(flixColor: .darkOlive))
+//            .frame(height: 40)
+//            .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
     }
 }
 

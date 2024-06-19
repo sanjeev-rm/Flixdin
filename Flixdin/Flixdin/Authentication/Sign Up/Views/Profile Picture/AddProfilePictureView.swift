@@ -119,6 +119,7 @@ extension AddProfilePictureView {
                 .frame(height: 40)
                 .frame(maxWidth: .infinity)
         }
+        .tint(.accent)
         .buttonStyle(.borderedProminent)
         .buttonBorderShape(.capsule)
     }

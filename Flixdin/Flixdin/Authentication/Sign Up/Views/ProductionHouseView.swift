@@ -52,17 +52,21 @@ extension ProductionHouseView {
     
     /// The next button
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next") {
             // Navigate to OtherSkillsView
             signUpViewModel.navigateToSaveLoginInfoViewFromProductionHouse = true
-        } label: {
-            Text("Next")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
+//        Button {
+//            // Navigate to OtherSkillsView
+//            signUpViewModel.navigateToSaveLoginInfoViewFromProductionHouse = true
+//        } label: {
+//            Text("Next")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
     }
 }
 

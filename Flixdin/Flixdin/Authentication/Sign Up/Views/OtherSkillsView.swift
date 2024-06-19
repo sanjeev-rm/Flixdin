@@ -110,11 +110,12 @@ extension OtherSkillsView {
             }
         }
         .pickerStyle(.menu)
+        .tint(.accent)
     }
     
     /// The add button
     private var addButton: some View {
-        Button {
+        FlixdinButton(labelText: "Add", showProgress: signUpViewModel.showUpdatingOtherSkillsProgress) {
             // Navigate to WelcomeView
             // MARK: Send all collected info to backend
             signUpViewModel.addUserOtherSkills { success in
@@ -128,21 +129,37 @@ extension OtherSkillsView {
                     }
                 }
             }
-        } label: {
-            ZStack {
-                if signUpViewModel.showUpdatingOtherSkillsProgress {
-                    ProgressView()
-                } else {
-                    Text("Add")
-                }
-            }
-            .font(.system(size: 22))
-            .foregroundColor(.init(flixColor: .darkOlive))
-            .frame(height: 40)
-            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
         .disabled(signUpViewModel.primaryDomain == .none)
+//        Button {
+//            // Navigate to WelcomeView
+//            // MARK: Send all collected info to backend
+//            signUpViewModel.addUserOtherSkills { success in
+//                if success {
+//                    DispatchQueue.main.async {
+//                        signUpViewModel.navigateToSaveLoginInfoViewFromOtherSkills = true
+//                    }
+//                } else {
+//                    DispatchQueue.main.async {
+//                        showAlert = true
+//                    }
+//                }
+//            }
+//        } label: {
+//            ZStack {
+//                if signUpViewModel.showUpdatingOtherSkillsProgress {
+//                    ProgressView()
+//                } else {
+//                    Text("Add")
+//                }
+//            }
+//            .font(.system(size: 22))
+//            .foregroundColor(.init(flixColor: .darkOlive))
+//            .frame(height: 40)
+//            .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .disabled(signUpViewModel.primaryDomain == .none)
     }
 }
 

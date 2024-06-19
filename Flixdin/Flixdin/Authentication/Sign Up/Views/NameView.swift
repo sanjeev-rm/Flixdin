@@ -61,18 +61,23 @@ extension NameView {
     }
     
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next") {
             // MARK: Navigate to CreatePasswordView
             signUpViewModel.navigateToCreatePasswordView = true
-        } label: {
-            Text("Next")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
         .disabled(signUpViewModel.name.isEmpty)
+//        Button {
+//            // MARK: Navigate to CreatePasswordView
+//            signUpViewModel.navigateToCreatePasswordView = true
+//        } label: {
+//            Text("Next")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .disabled(signUpViewModel.name.isEmpty)
     }
 }
 

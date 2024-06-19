@@ -76,7 +76,7 @@ extension ForgotPasswordEmailView {
     
     /// The receive OTP button
     private var receiveEmailButton: some View {
-        Button {
+        FlixdinButton(labelText: "Receive Email", showProgress: forgotPasswordViewModel.showProgress) {
             Task {
                 forgotPasswordViewModel.showProgress = true
                 do {
@@ -91,21 +91,38 @@ extension ForgotPasswordEmailView {
                     forgotPasswordViewModel.errorMessage = error.localizedDescription
                 }
             }
-        } label: {
-            ZStack {
-                if forgotPasswordViewModel.showProgress {
-                    ProgressView()
-                } else {
-                    Text("Receive Email")
-                }
-            }
-            .font(.system(size: 22))
-            .foregroundColor(.init(flixColor: .darkOlive))
-            .frame(height: 40)
-            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
         .disabled(isReceiveEmailButtonDisabled())
+//        Button {
+//            Task {
+//                forgotPasswordViewModel.showProgress = true
+//                do {
+//                    try await forgotPasswordViewModel.resetPassword(email: forgotPasswordViewModel.email)
+//                    loginViewModel.presentForgotPasswordEmailSentAlert()
+//                    authenticationViewModel.showForgotPasswordView = false
+//                    forgotPasswordViewModel.showProgress = false
+//                } catch {
+//                    print("DEBUG: " + error.localizedDescription)
+//                    forgotPasswordViewModel.showProgress = false
+//                    forgotPasswordViewModel.showAlert = true
+//                    forgotPasswordViewModel.errorMessage = error.localizedDescription
+//                }
+//            }
+//        } label: {
+//            ZStack {
+//                if forgotPasswordViewModel.showProgress {
+//                    ProgressView()
+//                } else {
+//                    Text("Receive Email")
+//                }
+//            }
+//            .font(.system(size: 22))
+//            .foregroundColor(.init(flixColor: .darkOlive))
+//            .frame(height: 40)
+//            .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .disabled(isReceiveEmailButtonDisabled())
     }
     
     /// The login button

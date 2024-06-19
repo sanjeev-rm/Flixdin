@@ -128,18 +128,23 @@ extension ForgotPasswordResetPasswordView {
     
     /// The reset button
     private var resetPasswordButton: some View {
-        Button {
+        FlixdinButton(labelText: "Reset") {
             // MARK: Send email and new passwords to backend
             // Dismiss Forgot password view
             authenticationViewModel.showForgotPasswordView = false
-        } label: {
-            Text("Reset")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
+//        Button {
+//            // MARK: Send email and new passwords to backend
+//            // Dismiss Forgot password view
+//            authenticationViewModel.showForgotPasswordView = false
+//        } label: {
+//            Text("Reset")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
     }
 }
 

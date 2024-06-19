@@ -72,18 +72,23 @@ extension MobileView {
     }
     
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next") {
             // MARK: Navigate to MobileVerificationView
             signUpViewModel.navigateToMobileVerificationView = true
-        } label: {
-            Text("Next")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
         .disabled(signUpViewModel.mobile.count != 10)
+//        Button {
+//            // MARK: Navigate to MobileVerificationView
+//            signUpViewModel.navigateToMobileVerificationView = true
+//        } label: {
+//            Text("Next")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .disabled(signUpViewModel.mobile.count != 10)
     }
 }
 

@@ -76,7 +76,7 @@ extension BioView {
     
     /// The next button
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next", showProgress: signUpViewModel.showUpdatingBioProgress) {
             signUpViewModel.updateUserBio { success in
                 if success {
                     DispatchQueue.main.async {
@@ -89,20 +89,34 @@ extension BioView {
                     }
                 }
             }
-        } label: {
-            ZStack {
-                if signUpViewModel.showUpdatingBioProgress {
-                    ProgressView()
-                } else {
-                    Text("Next")
-                }
-            }
-            .font(.system(size: 22))
-            .foregroundColor(.init(flixColor: .darkOlive))
-            .frame(height: 40)
-            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
+//        Button {
+//            signUpViewModel.updateUserBio { success in
+//                if success {
+//                    DispatchQueue.main.async {
+//                        // Navigate to AddDomainView
+//                        signUpViewModel.navigateToAddDomain = true
+//                    }
+//                } else {
+//                    DispatchQueue.main.async {
+//                        showAlert = true
+//                    }
+//                }
+//            }
+//        } label: {
+//            ZStack {
+//                if signUpViewModel.showUpdatingBioProgress {
+//                    ProgressView()
+//                } else {
+//                    Text("Next")
+//                }
+//            }
+//            .font(.system(size: 22))
+//            .foregroundColor(.init(flixColor: .darkOlive))
+//            .frame(height: 40)
+//            .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
     }
 }
 

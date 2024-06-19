@@ -64,7 +64,9 @@ extension TermsAndConditionsView {
     
     private var iAgreeButton: some View {
         VStack {
-            Button {
+            FlixdinButton(
+                labelText: "Agree",
+                showProgress: signUpViewModel.showSigningUpProgress) {
                 // MARK: Send to firebase and sign up
                 signUpViewModel.signUp { success in
                     if success {
@@ -76,21 +78,34 @@ extension TermsAndConditionsView {
                         showAlert = true
                     }
                 }
-                
-            } label: {
-                ZStack {
-                    if signUpViewModel.showSigningUpProgress {
-                        ProgressView()
-                    } else {
-                        Text("Agree")
-                    }
-                }
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent)
+//            Button {
+//                // MARK: Send to firebase and sign up
+//                signUpViewModel.signUp { success in
+//                    if success {
+//                        DispatchQueue.main.async {
+//                            signUpViewModel.userAcceptedTermsAndConditions = true
+//                            signUpViewModel.navigateToAddProfilePictureView = true
+//                        }
+//                    } else {
+//                        showAlert = true
+//                    }
+//                }
+//                
+//            } label: {
+//                ZStack {
+//                    if signUpViewModel.showSigningUpProgress {
+//                        ProgressView()
+//                    } else {
+//                        Text("Agree")
+//                    }
+//                }
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//            }
+//            .buttonStyle(.borderedProminent)
             
             VStack(spacing: 8) {
                 Text("Agree and Sign up")

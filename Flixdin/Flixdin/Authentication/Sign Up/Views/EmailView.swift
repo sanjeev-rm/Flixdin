@@ -72,18 +72,23 @@ extension EmailView {
     }
     
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next") {
             // Navigate to MobileView
             signUpViewModel.navigateToNameView = true
-        } label: {
-            Text("Next")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
         .disabled(signUpViewModel.email.isEmpty)
+//        Button {
+//            // Navigate to MobileView
+//            signUpViewModel.navigateToNameView = true
+//        } label: {
+//            Text("Next")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .disabled(signUpViewModel.email.isEmpty)
     }
 }
 

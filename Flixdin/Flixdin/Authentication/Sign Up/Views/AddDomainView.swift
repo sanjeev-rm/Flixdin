@@ -98,7 +98,7 @@ extension AddDomainView {
     
     /// The next button
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next", showProgress: signUpViewModel.showUpdatingDomainProgress) {
             signUpViewModel.updateUserDomain { success in
                 if success {
                     DispatchQueue.main.async {
@@ -118,21 +118,43 @@ extension AddDomainView {
                     }
                 }
             }
-        } label: {
-            ZStack {
-                if signUpViewModel.showUpdatingDomainProgress {
-                    ProgressView()
-                } else {
-                    Text("Next")
-                }
-            }
-            .font(.system(size: 22))
-            .foregroundColor(.init(flixColor: .darkOlive))
-            .frame(height: 40)
-            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
         .disabled(signUpViewModel.primaryDomain == .none)
+//        Button {
+//            signUpViewModel.updateUserDomain { success in
+//                if success {
+//                    DispatchQueue.main.async {
+//                        // Navigate to ProductionHouseInfo or OtherSkillsView
+//                        switch signUpViewModel.primaryDomain {
+//                        case .productionHouse:
+//                            // If selected domain is Production House then navigates to ProductionHouseView
+//                            signUpViewModel.navigateToProductionHouse = true
+//                        default:
+//                            // If any other domain is selected then navigates to OtherSkillsView directly
+//                            signUpViewModel.navigateToOtherSkillsFromAddDomain = true
+//                        }
+//                    }
+//                } else {
+//                    DispatchQueue.main.async {
+//                        showAlert = true
+//                    }
+//                }
+//            }
+//        } label: {
+//            ZStack {
+//                if signUpViewModel.showUpdatingDomainProgress {
+//                    ProgressView()
+//                } else {
+//                    Text("Next")
+//                }
+//            }
+//            .font(.system(size: 22))
+//            .foregroundColor(.init(flixColor: .darkOlive))
+//            .frame(height: 40)
+//            .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .disabled(signUpViewModel.primaryDomain == .none)
     }
 }
 

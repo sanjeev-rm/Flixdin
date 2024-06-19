@@ -75,17 +75,21 @@ extension BirthdayView {
     }
     
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next") {
             // MARK: Navigate to CreateUsernameView
             signUpViewModel.navigateToTermsAndConditionsView = true
-        } label: {
-            Text("Next")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
+//        Button {
+//            // MARK: Navigate to CreateUsernameView
+//            signUpViewModel.navigateToTermsAndConditionsView = true
+//        } label: {
+//            Text("Next")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
     }
 }
 

@@ -117,19 +117,25 @@ extension CreatePasswordView {
     
     /// The next button
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next") {
             // MARK: Navigate to BirthdayView
             signUpViewModel.user = User(mailID: signUpViewModel.email, password: signUpViewModel.confirmPassword)
             signUpViewModel.navigateToMobileView = true
-        } label: {
-            Text("Next")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
         .disabled(isNextButtonDisabled())
+//        Button {
+//            // MARK: Navigate to BirthdayView
+//            signUpViewModel.user = User(mailID: signUpViewModel.email, password: signUpViewModel.confirmPassword)
+//            signUpViewModel.navigateToMobileView = true
+//        } label: {
+//            Text("Next")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .disabled(isNextButtonDisabled())
     }
 }
 

@@ -70,6 +70,7 @@ extension SaveLoginInfoView {
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(.borderedProminent)
+        .tint(.accent)
     }
     
     private var notNowButton: some View {

@@ -78,21 +78,29 @@ extension MobileVerificationView {
     }
     
     private var nextButton: some View {
-        Button {
+        FlixdinButton(labelText: "Next") {
             // Navigate to NameView
             // MARK: verify OTP
             signUpViewModel.navigateToCreateUsernameView = true
-        } label: {
-            Text("Next")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
         .disabled(signUpViewModel.otp.isEmpty ||
                   signUpViewModel.otp.count != 6 ||
                   signUpViewModel.otp.contains(where: {!$0.isNumber}))
+//        Button {
+//            // Navigate to NameView
+//            // MARK: verify OTP
+//            signUpViewModel.navigateToCreateUsernameView = true
+//        } label: {
+//            Text("Next")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .disabled(signUpViewModel.otp.isEmpty ||
+//                  signUpViewModel.otp.count != 6 ||
+//                  signUpViewModel.otp.contains(where: {!$0.isNumber}))
     }
 }
 

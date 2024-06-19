@@ -70,18 +70,23 @@ extension CreateUsernameView {
     
     private var nextButton: some View {
         // MARK: Disable the button until entered username is available
-        Button {
+        FlixdinButton(labelText: "Next") {
             // MARK: Navigate to TermsAndConditionsView
             signUpViewModel.navigateToBirthdayView = true
-        } label: {
-            Text("Next")
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.borderedProminent)
         .disabled(isNextButtonDisabled())
+//        Button {
+//            // MARK: Navigate to TermsAndConditionsView
+//            signUpViewModel.navigateToBirthdayView = true
+//        } label: {
+//            Text("Next")
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//        }
+//        .buttonStyle(.borderedProminent)
+//        .disabled(isNextButtonDisabled())
     }
 }
 

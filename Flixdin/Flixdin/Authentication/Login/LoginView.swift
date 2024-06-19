@@ -177,41 +177,46 @@ extension LoginView {
         VStack(spacing: 16) {
             
             // Login Button
-            Button {
+            FlixdinButton(labelText: "Login", showProgress: loginViewModel.showProgress) {
                 loginViewModel.login { success in
                     if success {
                         authenticationViewModel.isLoggedIn = true
                     }
                 }
-            } label: {
-                ZStack {
-                    if loginViewModel.showProgress {
-                        ProgressView()
-                    } else {
-                        Text("Login")
-                    }
-                }
-                .font(.system(size: 22))
-                .foregroundColor(.init(flixColor: .darkOlive))
-                .frame(height: 40)
-                .frame(maxWidth: .infinity)
             }
-            .buttonStyle(.borderedProminent)
+//            Button {
+//                loginViewModel.login { success in
+//                    if success {
+//                        authenticationViewModel.isLoggedIn = true
+//                    }
+//                }
+//            } label: {
+//                ZStack {
+//                    if loginViewModel.showProgress {
+//                        ProgressView()
+//                    } else {
+//                        Text("Login")
+//                    }
+//                }
+//                .font(.system(size: 22))
+//                .foregroundColor(.init(flixColor: .darkOlive))
+//                .frame(height: 40)
+//                .frame(maxWidth: .infinity)
+//            }
+//            .buttonStyle(.borderedProminent)
             
             // The OR seperator
             HStack {
                 RoundedRectangle(cornerRadius: 8)
                     .frame(height: 3)
-                    .foregroundColor(.accentColor)
                 
                 Text("OR")
-                    .foregroundColor(.accentColor)
                     .font(.system(size: 24, weight: .heavy))
                 
                 RoundedRectangle(cornerRadius: 8)
                     .frame(height: 3)
-                    .foregroundColor(.accentColor)
             }
+            .foregroundStyle(.accent)
             .padding([.leading, .trailing], 44)
             
             // The SignUp button
@@ -220,17 +225,21 @@ extension LoginView {
                     .foregroundColor(.init(flixColor: .olive))
                     .font(.system(size: 15))
                 
-                Button {
-                    // Show to SignUp View
+                FlixdinButton(labelText: "Sign Up") {
                     authenticationViewModel.showSignUpView = true
-                } label: {
-                    Text("Sign Up")
-                        .font(.system(size: 22))
-                        .foregroundColor(.init(flixColor: .darkOlive))
-                        .frame(height: 40)
-                        .frame(maxWidth: .infinity)
                 }
-                .buttonStyle(.borderedProminent)
+                
+//                Button {
+//                    // Show to SignUp View
+//                    authenticationViewModel.showSignUpView = true
+//                } label: {
+//                    Text("Sign Up")
+//                        .font(.system(size: 22))
+//                        .foregroundColor(.init(flixColor: .darkOlive))
+//                        .frame(height: 40)
+//                        .frame(maxWidth: .infinity)
+//                }
+//                .buttonStyle(.borderedProminent)
             }
         }
     }
