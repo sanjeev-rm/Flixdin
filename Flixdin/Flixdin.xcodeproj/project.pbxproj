@@ -127,6 +127,7 @@
 		C7A370542A54A5ED0064FF86 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A370532A54A5ED0064FF86 /* DashboardView.swift */; };
 		C7A370562A54A78D0064FF86 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A370552A54A78D0064FF86 /* SignUpView.swift */; };
 		C7A3705A2A54A9FE0064FF86 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A370592A54A9FE0064FF86 /* ForgotPasswordView.swift */; };
+		C7B2E96F2C4D1BFD00E29B4E /* ChatsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B2E96E2C4D1BFD00E29B4E /* ChatsListView.swift */; };
 		C7B6D5512A99955D0058B48B /* FlicksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B6D5502A99955D0058B48B /* FlicksView.swift */; };
 		C7B7B2A22A5AAEEA00013291 /* ConnectionCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B7B2A12A5AAEEA00013291 /* ConnectionCall.swift */; };
 		C7B7B2A42A5AAFAA00013291 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B7B2A32A5AAFAA00013291 /* User.swift */; };
@@ -307,6 +308,7 @@
 		C7A370532A54A5ED0064FF86 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		C7A370552A54A78D0064FF86 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C7A370592A54A9FE0064FF86 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		C7B2E96E2C4D1BFD00E29B4E /* ChatsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsListView.swift; sourceTree = "<group>"; };
 		C7B6D5502A99955D0058B48B /* FlicksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlicksView.swift; sourceTree = "<group>"; };
 		C7B7B2A12A5AAEEA00013291 /* ConnectionCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionCall.swift; sourceTree = "<group>"; };
 		C7B7B2A32A5AAFAA00013291 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1162,6 +1164,7 @@
 			isa = PBXGroup;
 			children = (
 				ED79AC042A5AA243000861F1 /* AllMessagesView.swift */,
+				C7B2E96E2C4D1BFD00E29B4E /* ChatsListView.swift */,
 				ED9B7B792A5A750E002F1A2D /* DirectMessagesView.swift */,
 				ED79ABFC2A5A9036000861F1 /* SendersMessageView.swift */,
 				ED79AC002A5A9917000861F1 /* ReceiversMessageView.swift */,
@@ -1417,6 +1420,7 @@
 				C7DAD7742A819F44007D891D /* AddToPostOrConnectionCallOptionView.swift in Sources */,
 				C71AC9652B66DAAC005ED500 /* SaveButton.swift in Sources */,
 				C722AF842AEB3D26005DC8F5 /* UserProfileUpdateService.swift in Sources */,
+				C7B2E96F2C4D1BFD00E29B4E /* ChatsListView.swift in Sources */,
 				ED53785B2AB7620300E636C0 /* AuthDataResult.swift in Sources */,
 				C72442652B87B76200A586CC /* PostAPIService.swift in Sources */,
 				C731CA1B2B9CC8BC0036EB8A /* FollowButton.swift in Sources */,

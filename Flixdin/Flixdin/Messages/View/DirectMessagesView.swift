@@ -32,6 +32,7 @@ struct DirectMessagesView: View {
                     MessageView(message: message, senderId: chatViewModel.getSenderId())
                 }
             }
+            .padding(.vertical)
             
             messageInputField
         }
@@ -39,12 +40,12 @@ struct DirectMessagesView: View {
             socketIOManager.joinRoom(senderId: chatViewModel.getSenderId(), receiverId: receiverUserId)
             
             chatViewModel.fetchMessages(senderId: chatViewModel.getSenderId(), receiverId: receiverUserId)
-            
         }
         .onDisappear {
             socketIOManager.leaveRoom(senderId: chatViewModel.getSenderId(), receiverId: receiverUserId)
         }
-        .navigationTitle(receiver?.fullName ?? "Chat")
+        .navigationTitle(receiver?.fullName ?? "")
+        .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button {
@@ -91,6 +92,7 @@ struct DirectMessagesView: View {
     private func sendMessage() {
         socketIOManager.sendMessage(senderId: chatViewModel.getSenderId(), receiverId: receiverUserId, message: messageText)
         messageText = ""
+        chatViewModel.fetchMessages(senderId: chatViewModel.getSenderId(), receiverId: receiverUserId)
     }
 }
 
@@ -103,20 +105,20 @@ struct MessageView: View {
             if message.sender_id == senderId {
                 Spacer()
                 Text(message.content)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(8)
+                    .background(.accent)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
             } else {
                 Text(message.content)
-                    .padding()
-                    .background(Color.gray)
-                    .foregroundColor(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(8)
+                    .background(.flixColorBackgroundTernary)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+//                    .shadow(radius: 8)
                 Spacer()
             }
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.vertical, 4)
     }
 }
 

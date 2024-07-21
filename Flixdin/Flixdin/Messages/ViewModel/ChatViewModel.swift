@@ -86,7 +86,7 @@ class ChatViewModel: ObservableObject {
                 
                 self?.searchedUser = response
                 print("Success searched user: \(String(describing: self?.searchedUser))")
-                
+                print("Users found: \(self!.searchedUser.count)")
             }
         }catch{
             print("error getting searched user \(error)")
@@ -117,6 +117,7 @@ class ChatViewModel: ObservableObject {
                 let decodedMessages = try JSONDecoder().decode([ChatMessage].self, from: data)
                 let sortedMessages = decodedMessages.sorted { $0.created_at < $1.created_at }
                 DispatchQueue.main.async {
+                    self.messages.removeAll()
                     self.messages.append(contentsOf: sortedMessages)
                     print("success getting paginated and sorted messages")
                 }
